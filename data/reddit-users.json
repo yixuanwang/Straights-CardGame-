@@ -1,0 +1,78 @@
+{ "users": [
+	{
+	  "id": "538qk1", 
+	  "email_address": "tnext@gmail.com", 
+	  "gold_creddits": 0, 
+	  "link_karma": 1, 
+	  "comment_karma": 0, 
+	  "suspension_expiration": { "date": "NULL"}, 
+	  "is_mod": false, 
+	  "created":   
+	  {
+	   "date": {
+		"year": 2015,
+		"month": 3,
+		"day": 26
+	   }
+	  },
+	  "inbox_count": 0, 
+	  "is_employee": false, 
+	  "over_18": true, 
+	  "has_verified_email": true, 
+	  "name": "tnext",
+	  "is_gold": false
+	},
+	{
+	  "id": "xCd123", 
+	  "email_address": "cheshire.cat@yahoo.com", 
+	  "gold_creddits": 10155, 
+	  "link_karma": 2301, 
+	  "comment_karma": 10473, 
+	  "suspension_expiration": 
+	  { 
+	  "date": {
+		"year": 2017,
+		"month": 6,
+		"day": 26
+	  }
+	  }, 
+	  "is_mod": true, 
+	  "created": {
+	   "date": {
+		"year": 2009,
+		"month": 10,
+		"day": 1
+	   }
+	  },
+	  "inbox_count": 67, 
+	  "is_employee": true, 
+	  "over_18": true, 
+	  "has_verified_email": true, 
+	  "name": "ccat",
+	  "is_gold": true 
+	},
+	{
+	  "id": "23uj1e", 
+	  "email_address": "wfish@gmail.com", 
+	  "gold_creddits": 8, 
+	  "link_karma": 14, 
+	  "comment_karma": 6, 
+	  "suspension_expiration": { "date": "NULL"}, 
+	  "is_mod": false, 
+	  "created":   
+	  {
+	   "date": {
+		"year": 2017,
+		"month": 5,
+		"day": 2
+	   }
+	  },
+	  "inbox_count": 10, 
+	  "is_employee": false, 
+	  "over_18": false, 
+	  "has_verified_email": false, 
+	  "name": "wfish",
+	  "is_gold": false
+	  }
+]
+}

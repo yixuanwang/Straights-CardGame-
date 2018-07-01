@@ -1,0 +1,379 @@
+{
+	"users": [
+		{
+			"name": "Unitary Authority of Warrington Cat",
+			"email_address": "cheshire.cat@yahoo.com"
+		},
+		{
+			"name": "Wanda Fish",
+			"email_address": "wfish@gmail.com"
+		},
+		{
+			"name": "Thursday Next",
+			"email_address": "tnext@gmail.com"
+		},
+		{
+			"name": "The Scamperbeasts",
+			"email_address": "scamperbeasts@fake.email.com"
+		},
+		{
+			"name": "Alt-VP 48",
+			"email_address": "alt-vp48@fake.email.com"
+		},
+		{
+			"name": "Alt-POTUS 45",
+			"email_address": "alt-potus45@fake.email.com"
+		},
+		{
+			"name": "Kameron Hurley",
+			"email_address": "kameron.hurley@fake.email.com"
+		},
+		{
+			"name": "Emo Kylo Ren",
+			"email_address": "kylo.r3n@fake.email.com"
+		},
+		{
+			"name": "Jack Spratt",
+			"email_address": "jspratt@gmail.com"
+		},
+		{
+			"name": "Nnedi Okorafor, PhD",
+			"email_address": "nnedi.okorafor@fake.email.com"
+		},
+		{
+			"name": "John Scalzi",
+			"email_address": "scalzi@fake.email.com"
+		},
+		{
+			"name": "Wil Wheaton",
+			"email_address": "wilw@fake.email.com"
+		},
+		{
+			"name": "Shipwrecked",
+			"email_address": "shipwreckedsketch@gmail.com"
+		},
+		{
+			"id": "1671492",
+			"email_address": "cheshire.cat@yahoo.com",
+			"username": "ccat",
+			"full_name": "Unitary Authority of Warrington Cat",
+			"profile_picture": "https://en.wikipedia.org/wiki/File:Tennel_Cheshire_proof.png",
+			"bio": "Cat, formerly known as Cheshire: Librarian at The Great Library. The only permanent member of Jurisfiction, the Cat used to be 'The Cheshire Cat' (see Alice in Wonderland) but they moved the County boundaries, so he is now the 'Unitary Authority of Warrington Cat'. With an encyclopaedic knowledge of the library, the Cat is well placed to assist Jurisfiction operatives in their work within the BookWorld. Member of the TravelBook Advancement Committee.",
+			"website": "https://en.wikipedia.org/wiki/Cheshire_Catm",
+			"counts": {
+				"media": 1320,
+				"follows": 420,
+				"followed_by": 3410
+			}
+		}, 
+		{
+			"id": "23uj1e",
+			"email_address": "wfish@gmail.com",
+			"gold_creddits": 8,
+			"link_karma": 14,
+			"comment_karma": 6,
+			"suspension_expiration": {
+				"date": "NULL"
+			},
+			"is_mod": false,
+			"created": {
+				"date": {
+					"year": 2017,
+					"month": 5,
+					"day": 2
+				}
+			},
+			"inbox_count": 10,
+			"is_employee": false,
+			"over_18": false,
+			"has_verified_email": false,
+			"name": "wfish",
+			"is_gold": false
+		}, 
+		{
+			"id": "9294396",
+			"email_address": "tnext@gmail.com",
+			"username": "tnext",
+			"full_name": "Thursday Next",
+			"profile_picture": "http://www.jasperfforde.com/subindex/images/tn_series_header.jpg",
+			"bio": "See https://en.wikipedia.org/wiki/Thursday_Next.",
+			"website": "https://en.wikipedia.org/wiki/Thursday_Next",
+			"counts": {
+				"media": 0,
+				"follows": 3,
+				"followed_by": 101243
+			}
+		}, 
+		{
+			"id": "4749465977",
+			"name": "The Scamperbeasts",
+			"email_address": "scamperbeasts@fake.email.com",
+			"screen_name": "scamperbeasts",
+			"location": "Bradford, OH",
+			"description": "We Scamper. We Nap. We Scamper Again.",
+			"url": "https://t.co/vKSc3BeoOx",
+			"followers_count": 9425,
+			"friends_count": 8,
+			"created_at": {
+				"date": {
+					"year": 2016,
+					"month": 1,
+					"day": 9
+				}
+			},
+			"favourites_count": 0,
+			"verified": false,
+			"statuses_count": 342,
+			"lang": "en",
+			"profile_image_url": "http://pbs.twimg.com/profile_images/685623522119577600/FoOyvkkp_normal.jpg"
+		}, 
+		{
+			"id": "538qk1",
+			"email_address": "tnext@gmail.com",
+			"gold_creddits": 0,
+			"link_karma": 1,
+			"comment_karma": 0,
+			"suspension_expiration": {
+				"date": "NULL"
+			},
+			"is_mod": false,
+			"created": {
+				"date": {
+					"year": 2015,
+					"month": 3,
+					"day": 26
+				}
+			},
+			"inbox_count": 0,
+			"is_employee": false,
+			"over_18": true,
+			"has_verified_email": true,
+			"name": "tnext",
+			"is_gold": false
+		}, 
+		{
+			"id": "xCd123",
+			"email_address": "cheshire.cat@yahoo.com",
+			"gold_creddits": 10155,
+			"link_karma": 2301,
+			"comment_karma": 10473,
+			"suspension_expiration": {
+				"date": {
+					"year": 2017,
+					"month": 6,
+					"day": 26
+				}
+			},
+			"is_mod": true,
+			"created": {
+				"date": {
+					"year": 2009,
+					"month": 10,
+					"day": 1
+				}
+			},
+			"inbox_count": 67,
+			"is_employee": true,
+			"over_18": true,
+			"has_verified_email": true,
+			"name": "ccat",
+			"is_gold": true
+		}, 
+		{
+			"id": "829056194698285056",
+			"email_address": "alt-vp48@fake.email.com",
+			"name": "Alt-VP 48",
+			"screen_name": "AltVP48",
+			"location": "West Wing in Paradise",
+			"description": "All I want to do is eat chips, make dad jokes and help @IfHillaryHad lead our darn country... AND I'M ALL OUT OF CHIPS #AlternativeFacts | Tweets by @DevonHandy",
+			"url": "",
+			"followers_count": 8255,
+			"friends_count": 45,
+			"created_at": {
+				"date": {
+					"year": 2017,
+					"month": 2,
+					"day": 7
+				}
+			},
+			"favourites_count": 51,
+			"verified": false,
+			"statuses_count": 169,
+			"lang": "en",
+			"profile_image_url": "http://pbs.twimg.com/profile_images/829058066842652672/nQXhF86Z_normal.jpg"
+		}, 
+		{
+			"id": "817269572998860800",
+			"email_address": "alt-potus45@fake.email.com",
+			"name": "Alt-POTUS 45",
+			"screen_name": "IfHillaryHad",
+			"location": "LOCKED UP (IN THE OVAL OFFICE)",
+			"description": "I am the 45th President of the United States! #AlternativeFacts \/\/ Tweets by @sarahlerner",
+			"url": "",
+			"followers_count": 57788,
+			"friends_count": 5,
+			"created_at": {
+				"date": {
+					"year": 2017,
+					"month": 1,
+					"day": 6
+				}
+			},
+			"favourites_count": 6766,
+			"verified": false,
+			"statuses_count": 2675,
+			"lang": "en",
+			"profile_image_url": "http://pbs.twimg.com/profile_images/834873315319656448/7oRIO_af_normal.jpg"
+		}, 
+		{
+			"id": "27869564",
+			"name": "Kameron Hurley",
+			"email_address": "kameron.hurley@fake.email.com",
+			"screen_name": "KameronHurley",
+			"location": "GOD'S WAR | MIRROR EMPIRE",
+			"description": "GEEK FEMINIST REVOLUTION   https:\/\/t.co\/dON3MUttoU     Newsletter: https:\/\/t.co\/N5nAp6DSQS",
+			"url": "http://t.co/0HI1ayewJe",
+			"followers_count": 10815,
+			"friends_count": 340,
+			"created_at": {
+				"date": {
+					"year": 2009,
+					"month": 3,
+					"day": 31
+				}
+			},
+			"favourites_count": 121,
+			"verified": false,
+			"statuses_count": 99393,
+			"lang": "en",
+			"profile_image_url": "http://pbs.twimg.com/profile_images/839584288869777408/Nq4XWVYC_normal.jpg"
+		}, 
+		{
+			"id": "4625687418",
+			"name": "Emo Kylo Ren",
+			"email_address": "kylo.r3n@fake.email.com",
+			"screen_name": "KyloR3n",
+			"location": "Starkiller Base",
+			"description": "ren's rights activist",
+			"url": "",
+			"followers_count": 828879,
+			"friends_count": 2,
+			"created_at": {
+				"date": {
+					"year": 2015,
+					"month": 12,
+					"day": 21
+				}
+			},
+		        "favourites_count": 977,
+		        "statuses_count": 99,
+		        "verified": false,
+			"lang": "en",
+			"profile_image_url": "http://pbs.twimg.com/profile_images/679075823907831809/bJjXiFwm_normal.jpg"
+		}, 
+		{
+			"id": "9404238",
+			"email_address": "jspratt@gmail.com",
+			"username": "jspratt",
+			"full_name": "Jack Spratt",
+			"profile_picture": "http://www.jasperfforde.com/nurserycrime/images/tboe-pb-duo.jpg",
+			"bio": "See https://en.wikipedia.org/wiki/Jack_Spratt_(fictional_detective)",
+			"website": "https://en.wikipedia.org/wiki/Jack_Spratt_(fictional_detective)",
+			"counts": {
+				"media": 687,
+				"follows": 458,
+				"followed_by": 1
+			}
+		}, 
+		{
+			"id": "16504257",
+			"name": "Nnedi Okorafor, PhD",
+			"email_address": "nnedi.okorafor@fake.email.com",
+			"screen_name": "Nnedi",
+			"location": "The Greeny Jungle",
+			"description": "Naijamerican professor, rudimentary cyborg & World Fantasy, Hugo and Nebula Award-winning  author of scifi, magical futurism, juju fantasy & mystical realism.",
+			"url": "https://t.co/dHc3fm9m4J",
+			"followers_count": 23194,
+			"friends_count": 304,
+			"created_at": {
+				"date": {
+					"year": 2008,
+					"month": 9,
+					"day": 28
+				}
+			},
+			"favourites_count": 539,
+			"verified": true,
+			"statuses_count": 54444,
+			"lang": "en",
+			"profile_image_url": "http://pbs.twimg.com/profile_images/804330623896797184/QPhwXaV6_normal.jpg"
+		}, 
+		{
+			"id": "14202817",
+			"name": "John Scalzi",
+			"email_address": "scalzi@fake.email.com",
+			"screen_name": "scalzi",
+			"location": "Bradford, Ohio, USA",
+			"description": "I enjoy pie.",
+			"url": "http://t.co/27Copmnrzm",
+			"followers_count": 117346,
+			"friends_count": 427,
+			"created_at": {
+				"date": {
+					"year": 2008,
+					"month": 3,
+					"day": 23
+				}
+			},
+			"favourites_count": 9,
+			"verified": true,
+			"statuses_count": 113452,
+			"lang": "en",
+			"profile_image_url": "http://pbs.twimg.com/profile_images/3475245194/59992708a306aaa836bf1699f8b47d5d_normal.png"
+		},
+		{
+			"id": "1183041",
+			"name": "Wil Wheaton",
+			"email_address": "wilw@fake.email.com",
+			"screen_name": "wilw",
+			"location": "Los Angeles",
+			"description": "Fake geek girl. I can't believe that Bryce prefers Van Patten's card to mine. On a good day I am charming as **ck.",
+			"url": "http://t.co/UAYYOhbijM",
+			"followers_count": 3108921,
+			"friends_count": 384,
+			"created_at": {
+				"date": {
+					"year": 2007,
+					"month": 3,
+					"day": 14
+				}
+			},
+			"favourites_count": 1214,
+			"verified": true,
+			"statuses_count": 71003,
+			"lang": "en",
+			"profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/793503013851631616\/55p1uw70_normal.jpg"
+		}, 
+		{
+			"id": "UCUfhyab6P-tvZapz4Ppu7vQ",
+			"email_address": "shipwreckedsketch@gmail.com",
+			"snippet": {
+				"title": "Shipwrecked.",
+				"description": "Here to fulfill all your historical literary comedy webseries needs. \n\nEdgar Allan Poe's Murder Mystery Dinner Party is funded! https://www.kickstarter.com/projects/1029702011/poeparty\n\nContact us at shipwreckedsketch@gmail.com.",
+				"publishedAt": {
+					"date": {
+						"year": 2013,
+						"month": 9,
+						"day": 25
+					}
+				}
+			},
+			"statistics": {
+				"viewCount": 2198563,
+				"commentCount": 0,
+				"subscriberCount": 28939,
+				"videoCount": 74
+			}
+		}
+	]
+}

@@ -1,0 +1,179 @@
+{ "users": [
+	{
+		"id":"829056194698285056",
+		"email_address": "alt-vp48@fake.email.com",
+		"name":"Alt-VP 48",
+		"screen_name":"AltVP48",
+		"location":"West Wing in Paradise",
+		"description":"All I want to do is eat chips, make dad jokes and help @IfHillaryHad lead our darn country... AND I'M ALL OUT OF CHIPS #AlternativeFacts | Tweets by @DevonHandy",
+		"url":"",
+		"followers_count":8255,
+		"friends_count":45,
+		"created_at": {
+			"date": {
+				"year" : 2017,
+				"month" : 2,
+				"day" : 7
+			}},
+		"favourites_count":51,
+		"verified":false,
+		"statuses_count":169,
+		"lang":"en",
+		"profile_image_url":"http://pbs.twimg.com/profile_images/829058066842652672/nQXhF86Z_normal.jpg"
+	},
+	{
+		"id": "817269572998860800",		
+		"email_address": "alt-potus45@fake.email.com",
+		"name": "Alt-POTUS 45",
+		"screen_name": "IfHillaryHad",
+		"location": "LOCKED UP (IN THE OVAL OFFICE)",
+		"description": "I am the 45th President of the United States! #AlternativeFacts \/\/ Tweets by @sarahlerner",
+		"url": "",
+		"followers_count": 57788,
+		"friends_count": 5,
+		"created_at": {
+			"date": {
+				"year" : 2017,
+				"month" : 1,
+				"day" : 6
+		}},
+		"favourites_count": 6766,
+		"verified": false,
+		"statuses_count": 2675,
+		"lang": "en",
+		"profile_image_url": "http://pbs.twimg.com/profile_images/834873315319656448/7oRIO_af_normal.jpg"
+	},
+	{
+		"id": "27869564",
+		"name": "Kameron Hurley",
+		"email_address": "kameron.hurley@fake.email.com",
+		"screen_name": "KameronHurley",
+		"location": "GOD'S WAR | MIRROR EMPIRE",
+		"description": "GEEK FEMINIST REVOLUTION   https:\/\/t.co\/dON3MUttoU     Newsletter: https:\/\/t.co\/N5nAp6DSQS",
+		"url": "http://t.co/0HI1ayewJe",
+		"followers_count": 10815,
+		"friends_count": 340,
+		"created_at": {
+			"date": {
+				"year" : 2009,
+				"month" : 3,
+				"day" : 31
+			}},
+		"favourites_count": 121,
+		"verified": false,
+		"statuses_count": 99393,
+		"lang": "en",
+		"profile_image_url": "http://pbs.twimg.com/profile_images/839584288869777408/Nq4XWVYC_normal.jpg"
+	},
+	{
+		"id": "4625687418",
+		"name": "Emo Kylo Ren",
+		"email_address": "kylo.r3n@fake.email.com",
+		"screen_name": "KyloR3n",
+		"location": "Starkiller Base",
+		"description": "ren's rights activist",
+		"url": "",
+		"followers_count": 828879,
+		"friends_count": 2,
+		"created_at": {
+			"date": {
+				"year" : 2015,
+				"month" : 12,
+				"day" : 21
+			}},
+		"favourites_count": 977,
+		"verified": false,
+		"statuses_count": 23,
+		"lang": "en",
+		"profile_image_url": "http://pbs.twimg.com/profile_images/679075823907831809/bJjXiFwm_normal.jpg"
+	},
+	{
+		"id": "16504257",
+		"name": "Nnedi Okorafor, PhD",		
+		"email_address": "nnedi.okorafor@fake.email.com",
+		"screen_name": "Nnedi",
+		"location": "The Greeny Jungle",
+		"description": "Naijamerican professor, rudimentary cyborg & World Fantasy, Hugo and Nebula Award-winning  author of scifi, magical futurism, juju fantasy & mystical realism.",
+		"url": "https://t.co/dHc3fm9m4J",
+		"followers_count": 23194,
+		"friends_count": 304,
+		"created_at": {
+			"date": {
+				"year" : 2008,
+				"month" : 9,
+				"day" : 28
+			}},
+		"favourites_count": 539,
+		"verified": true,
+		"statuses_count": 54444,
+		"lang": "en",
+		"profile_image_url": "http://pbs.twimg.com/profile_images/804330623896797184/QPhwXaV6_normal.jpg"
+	},
+	{
+		"id": "14202817",
+		"name": "John Scalzi",
+		"email_address": "scalzi@fake.email.com",
+		"screen_name": "scalzi",
+		"location": "Bradford, Ohio, USA",
+		"description": "I enjoy pie.",
+		"url": "http://t.co/27Copmnrzm",
+		"followers_count": 117346,
+		"friends_count": 427,
+		"created_at": {
+			"date": {
+				"year" : 2008,
+				"month" : 3,
+				"day" : 23
+			}},
+		"favourites_count": 9,
+		"verified": true,
+		"statuses_count": 113452,
+		"lang": "en",
+		"profile_image_url": "http://pbs.twimg.com/profile_images/3475245194/59992708a306aaa836bf1699f8b47d5d_normal.png"
+	},
+	{
+		"id": "4749465977",
+		"name": "The Scamperbeasts",
+		"email_address": "scamperbeasts@fake.email.com",
+		"screen_name": "scamperbeasts",
+		"location": "Bradford, OH",
+		"description": "We Scamper. We Nap. We Scamper Again.",
+		"url": "https://t.co/vKSc3BeoOx",
+		"followers_count": 9425,
+		"friends_count": 8,
+		"created_at": {
+			"date": {
+				"year" : 2016,
+				"month" : 1,
+				"day" : 9
+			}},
+		"favourites_count": 0,
+		"verified": false,
+		"statuses_count": 342,
+		"lang": "en",
+		"profile_image_url": "http://pbs.twimg.com/profile_images/685623522119577600/FoOyvkkp_normal.jpg"
+	},
+	{
+		"id": "1183041",
+		"name": "Wil Wheaton",
+		"email_address": "wilw@fake.email.com",
+		"screen_name": "wilw",
+		"location": "Los Angeles",
+		"description": "Fake geek girl. I can't believe that Bryce prefers Van Patten's card to mine. On a good day I am charming as **ck.",
+		"url": "http://t.co/UAYYOhbijM",
+		"followers_count": 3108921,
+		"friends_count": 384,
+		"created_at": {
+			"date": {
+				"year" : 2007,
+				"month" : 3,
+				"day" : 14
+			}},
+		"favourites_count": 1214,
+		"verified": true,
+		"statuses_count": 71003,
+		"lang": "en",
+		"profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/793503013851631616\/55p1uw70_normal.jpg"
+	}
+]
+}
