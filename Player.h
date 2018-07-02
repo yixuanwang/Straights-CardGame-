@@ -18,6 +18,8 @@ protected:
 public:
   Player(std::vector<Card>, std::vector<Card>, int, Table *);
   virtual ~Player();
+  std::vector<Card> getHand();
+  std::vector<Card> getDiscard();
   void resetHand(std::vector<Card>);
   virtual void play() = 0;
   void update(Card card);

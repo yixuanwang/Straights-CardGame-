@@ -12,7 +12,7 @@ vector<Card> Player::getLegalPlay() {
   for(int i=0; i<tableCard.size(); i++){
     for(int j=0; j<hand_.size(); j++) {
       if(hand_[j].getSuit() == tableCard[i].getSuit()) {
-        if(hand_[j].getRank() == tableCard[i].getRank() || hand_[j].getRank() == tableCard[i].getRank() +1 || hand_[j].getRank() == tableCard[i].getRank() -1){
+        if(hand_[j].getRank() == tableCard[i].getRank() || hand_[j].getRank() - tableCard[i].getRank() == 1 || hand_[j].getRank() - tableCard[i].getRank() == -1){
           legalPlay.push_back(hand_[j]);
         }
       }
@@ -39,6 +39,14 @@ void Player::resetHand(vector<Card> hand)
 void Player::update(Card card)
 {
   table->pushCard(card);
+}
+
+std::vector<Card> Player::getHand() {
+  return hand_;
+}
+
+std::vector<Card> Player::getDiscard() {
+  return discard_;
 }
 
 ///////////////////////////////////////////////////////////////////////////
