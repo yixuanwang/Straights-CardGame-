@@ -6,10 +6,12 @@
 #include "Command.h"
 #include "Table.h"
 
+class Table;
+
 class Player
 {
-  Table * table_;
 protected:
+  Table * table_;
   std::vector<Card> hand_;
   std::vector<Card> discard_;
   //std::vector<Card> legalCard_;
@@ -23,7 +25,7 @@ public:
   void resetHand(std::vector<Card>);
   virtual void play() = 0;
   void update(Card card);
-}
+};
 
 class HumanPlayer : public Player
 {
@@ -32,7 +34,7 @@ public:
   HumanPlayer(std::vector<Card>, std::vector<Card>, int, Table *);
   virtual ~HumanPlayer();
   void play() override;
-}
+};
 
 class CpuPlayer : public Player
 {
@@ -40,4 +42,6 @@ public:
   CpuPlayer(std::vector<Card>, std::vector<Card>, int, Table *);
   virtual ~CpuPlayer();
   void play() override;
-}
+};
+
+#endif

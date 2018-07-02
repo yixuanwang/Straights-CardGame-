@@ -1,5 +1,6 @@
 #include "Player.h"
-
+#include <iostream>
+#include <assert.h>
 using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////
@@ -7,14 +8,22 @@ using namespace std;
 ///////////////////////////////////////////////////////////////////////////
 
 vector<Card> Player::getLegalPlay() {
-  vector<Card> tableCard = table->getPlayedCard();
+  vector<Card> tableCard = table_->getPlayedCard();
   vector<Card> legalPlay;
-  for(int i=0; i<tableCard.size(); i++){
-    for(int j=0; j<hand_.size(); j++) {
+  for(int j=0; j<hand_.size(); j++) {
+    for(int i=0; i<tableCard.size(); i++){
       if(hand_[j].getSuit() == tableCard[i].getSuit()) {
-        if(hand_[j].getRank() == tableCard[i].getRank() || hand_[j].getRank() - tableCard[i].getRank() == 1 || hand_[j].getRank() - tableCard[i].getRank() == -1){
+        if(hand_[j].getRank() - tableCard[i].getRank() == 1 || hand_[j].getRank() - tableCard[i].getRank() == -1){
           legalPlay.push_back(hand_[j]);
+          j++;
+          if(j == hand_.size()) return legalPlay;
+          i = -1;
         }
+      } else if (hand_[j].getRank() == SEVEN ) {
+        legalPlay.push_back(hand_[j]);
+        j++;
+        if(j == hand_.size()) return legalPlay;
+        i = -1;
       }
     }
   }
@@ -38,7 +47,7 @@ void Player::resetHand(vector<Card> hand)
 
 void Player::update(Card card)
 {
-  table->pushCard(card);
+  table_->pushCard(card);
 }
 
 std::vector<Card> Player::getHand() {
@@ -62,25 +71,35 @@ HumanPlayer::~HumanPlayer()
 }
 
 void HumanPlayer::play() {
-  table->printTableState();
+  table_->printTableState();
   vector<Card> legalPlay = getLegalPlay();
   cout << "Your hand:";
-  for(int i=0; i<hand_; i++){
+  for(int i=0; i<hand_.size(); i++){
     cout << " " << hand_[i];
   }
   cout << endl;
+  //if 1st player with 7spades
+  vector<Card> tableCard = table_->getPlayedCard();
+  if(tableCard.size() == 0){
+    for(int j=0; j<hand_.size(); j++) {
+      if(hand_[j].getRank() == SEVEN && hand_[j].getSuit() == SPADE){
+        legalPlay.push_back(hand_[j]);
+      }
+    }
+  }
   cout << "Legal plays:";
-  for(int i=0; i<legalPlay; i++){
+  for(int i=0; i<legalPlay.size(); i++){
     cout << " " << legalPlay[i];
   }
   cout << endl;
   bool endturn = false;
   while(!endturn) {
+    cout << ">";
     cin >> command_;
     if(command_.type == PLAY) {
       for(int i=0; i<legalPlay.size(); i++) {
         if(command_.card == legalPlay[i]) {
-          cout << "Player " << playerID_ << " plays " << command_.card << "." << endl;
+          cout << "Player " << playerID_+1 << " plays " << command_.card << "." << endl;
           endturn = true;
           update(command_.card);
           //delete card from hand_
@@ -99,7 +118,7 @@ void HumanPlayer::play() {
     } else if (command_.type == DISCARD) {
       if(legalPlay.size() == 0) {
         discard_.push_back(command_.card);
-        cout << "Player " << playerID_ << " discards " << command_.card << "." << endl;
+        cout << "Player " << playerID_+1 << " discards " << command_.card << "." << endl;
         endturn = true;
         //delete card from hand_
         for(int j=0; j<hand_.size(); j++) {
@@ -111,18 +130,18 @@ void HumanPlayer::play() {
         cout << "You have a legal play. You may not discard." << endl;
       }
     } else if (command_.type == DECK) {
-      table->printDeck();
+      table_->printDeck();
     } else if (command_.type == QUIT) {
       return;
     } else if (command_.type == RAGEQUIT) {
-      cout << "Player " << playerID_ << " ragequits. A computer will now take over." << endl;
-      table->setConvertPlayerId(playerID_);
+      cout << "Player " << playerID_+1 << " ragequits. A computer will now take over." << endl;
+      table_->setConvertPlayerId(playerID_);
       endturn = true;
     } else if (command_.type == BAD_COMMAND) {
       assert(false);
     }
   }
-  table->setTurnPlayer();
+  table_->setTurnPlayer();
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -141,13 +160,22 @@ CpuPlayer::~CpuPlayer()
 void CpuPlayer::play()
 {
   vector<Card> legalPlay = getLegalPlay();
+  //if 1st player with 7spades
+  vector<Card> tableCard = table_->getPlayedCard();
+  if(tableCard.size() == 0){
+    for(int j=0; j<hand_.size(); j++) {
+      if(hand_[j].getRank() == SEVEN && hand_[j].getSuit() == SPADE){
+        legalPlay.push_back(hand_[j]);
+      }
+    }
+  }
   if(legalPlay.size() == 0) {
-    cout << "Player " << playerID_ << " discards " << hand_[0] << "." << endl;
-    update(hand_[0]);
+    cout << "Player " << playerID_+1 << " discards " << hand_[0] << "." << endl;
     discard_.push_back(hand_[0]);
     hand_.erase(hand_.begin());
   } else {
-    cout << "Player " << playerID_ << " plays " << legalPlay[0] << "." << endl;
+    cout << "Player " << playerID_+1 << " plays " << legalPlay[0] << "." << endl;
+    update(legalPlay[0]);
     //delete card from hand_
     for(int j=0; j<hand_.size(); j++) {
       if(legalPlay[0] == hand_[j]){
@@ -155,4 +183,5 @@ void CpuPlayer::play()
       }
     }
   }
+  table_->setTurnPlayer();
 }
