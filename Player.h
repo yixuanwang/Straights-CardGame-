@@ -8,7 +8,7 @@
 
 class Player
 {
-  Subject * table_;
+  Table * table_;
 protected:
   std::vector<Card> hand_;
   std::vector<Card> discard_;
@@ -16,27 +16,26 @@ protected:
   int playerID_;
   std::vector<Card> getLegalPlay();
 public:
-  Player(std::vector<Card>, std::vector<Card>, int);
+  Player(std::vector<Card>, std::vector<Card>, int, Table *);
   virtual ~Player();
+  void resetHand(std::vector<Card>);
   virtual void play() = 0;
-  virtual void update() = 0;
+  void update(Card card);
 }
 
 class HumanPlayer : public Player
 {
   Command command_;
 public:
-  HumanPlayer(std::vector<Card>, std::vector<Card>, int);
+  HumanPlayer(std::vector<Card>, std::vector<Card>, int, Table *);
   virtual ~HumanPlayer();
   void play() override;
-  void update() override;
 }
 
 class CpuPlayer : public Player
 {
 public:
-  CpuPlayer(std::vector<Card>, std::vector<Card>, int);
+  CpuPlayer(std::vector<Card>, std::vector<Card>, int, Table *);
   virtual ~CpuPlayer();
   void play() override;
-  void update() override;
 }
