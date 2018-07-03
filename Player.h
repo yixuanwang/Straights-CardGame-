@@ -16,14 +16,43 @@ protected:
   std::vector<Card> discard_;
   //std::vector<Card> legalCard_;
   int playerID_;
+  //helper functions
+  /*
+  returns: a vector containing a list of legal plays of the player
+  */
   std::vector<Card> getLegalPlay();
 public:
+  /*
+  Constructor
+  ensures: Player is initialized with handcard, discardcards, playerID and a table
+  */
   Player(std::vector<Card>, std::vector<Card>, int, Table *);
+  /*
+  Destructor
+  modifies: stack
+  ensures: stack no longuer exist, memory is freed
+  */
   virtual ~Player();
+  /*
+  Accessor
+  returns: Players current hand card
+  */
   std::vector<Card> getHand();
+  /*
+  Accessor
+  returns: Players current discard pile
+  */
   std::vector<Card> getDiscard();
+  /*
+  modifies: this->hand_ and this->discard_
+  ensures: this->discard is emptied and a new hand is distributed
+  */
   void resetHand(std::vector<Card>);
   virtual void play() = 0;
+  /*
+  modifies: this->table_
+  ensures: a card get added to the table pile
+  */
   void update(Card card);
 };
 
@@ -31,16 +60,42 @@ class HumanPlayer : public Player
 {
   Command command_;
 public:
+  /*
+  Constructor
+  ensures: HumanPlayer is initialized with handcard, discardcards, playerID and a table
+  */
   HumanPlayer(std::vector<Card>, std::vector<Card>, int, Table *);
+  /*
+  Destructor
+  modifies: stack
+  ensures: stack no longuer exist, memory is freed
+  */
   virtual ~HumanPlayer();
+  /*
+  modifies: this->hand_, this->discard-, this->table_, cin
+  ensures: a valid play has been made and this player's turn is ended
+  */
   void play() override;
 };
 
 class CpuPlayer : public Player
 {
 public:
+  /*
+  Constructor
+  ensures: CpuPlayer is initialized with handcard, discardcards, playerID and a table
+  */
   CpuPlayer(std::vector<Card>, std::vector<Card>, int, Table *);
+  /*
+  Destructor
+  modifies: stack
+  ensures: stack no longuer exist, memory is freed
+  */
   virtual ~CpuPlayer();
+  /*
+  modifies: this->hand_, this->discard-, this->table_
+  ensures: a valid play has been made and this player's turn is ended
+  */
   void play() override;
 };
 
