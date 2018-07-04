@@ -3,3 +3,7 @@
 
 # Thumbnails
 ._*
+
+# dependencies and objects
+.o
+.d

@@ -74,6 +74,7 @@ public:
   /*
   modifies: this->hand_, this->discard-, this->table_, cin
   ensures: a valid play has been made and this player's turn is ended
+  requires: hand_ is not empty
   */
   void play() override;
 };
@@ -95,6 +96,7 @@ public:
   /*
   modifies: this->hand_, this->discard-, this->table_
   ensures: a valid play has been made and this player's turn is ended
+  requires: hand_ is not empty
   */
   void play() override;
 };

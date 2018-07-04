@@ -6,6 +6,7 @@
 #include <iostream>
 using namespace std;
 
+// return decks
 vector<Card> Table::initDeck(){
 	vector<Suit> suits = {CLUB, DIAMOND, HEART, SPADE};
 	vector<Rank> ranks = {ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING};
@@ -18,6 +19,9 @@ vector<Card> Table::initDeck(){
 	return decks;
 }
 
+// dtor
+//modifies: vector<player> players_ and stack
+//  ensures: all players are destroyed, stack no longuer exist, memory is freed
 Table::~Table() {
   for(int i=0; i<players_.size(); i++) {
     delete players_[i];
@@ -25,10 +29,14 @@ Table::~Table() {
   }
 }
 
+// modifies: convertPlayerId
 void Table::setConvertPlayerId(int c){
 	convertPlayerId = c;
 }
 
+// ctor
+// requires: argc is at least 2, argv[1] exists
+// ensures: Deck_ is shuffled, seed is argv[1], convertPlayerId is initialized as -1, score is initialized as {0,0,0,0}, players_ is intialized based on cin
 Table::Table(char **argv):Deck_{initDeck()}, seed{strtol(argv[1], NULL, 10)}, convertPlayerId{-1}{
 	vector<Card> v;
 	playedCards_ = v;
@@ -55,6 +63,7 @@ Table::Table(char **argv):Deck_{initDeck()}, seed{strtol(argv[1], NULL, 10)}, co
 	notify();
 }
 
+// modifies: Deck_
 void Table::shuffle(){
     static mt19937 rng(seed);
 
@@ -69,11 +78,12 @@ void Table::shuffle(){
 	}
 }
 
+// // return playedCards_
 vector<Card> Table::getPlayedCard(){
 	return playedCards_;
 }
 
-
+// ensures: player(observers) will be notified to play()
 void Table::notify(){
 	// TODO add parameters for update
 	if(players_[turnPlayer_]->getHand().size() == 0){
@@ -85,6 +95,8 @@ void Table::notify(){
 	players_[turnPlayer_]->play();
 }
 
+// modifies: turnPlayer_
+// ensures: after update turnPlayer_, notify the specific observer
 void Table::setTurnPlayer(){
 	if(convertPlayerId != -1){
 		convertPlayer();
@@ -142,7 +154,7 @@ string intToRankName(int c){
 	}
 }
 
-// will be used in print?? get the corresponsing suit, like spades, clubs based on the coresponding string
+// ensures: print ranks based on suits
 void Table::printRanksOfSuit(Suit s){
 	vector<int> played_rank;
 	for(int i = 0; i < playedCards_.size(); i++){
@@ -151,14 +163,12 @@ void Table::printRanksOfSuit(Suit s){
 		}
 	}
 	sort(played_rank.begin(),played_rank.end());
-	// vector<string> played_rank_output;
 	for(int i = 0; i <played_rank.size(); i++){
 		cout << " " << intToRankName(played_rank[i]);
-		// played_rank_output.append(intToRankName(played_rank[i]));
 	}
-	// return played_rank_output;
 }
 
+// ensures: print the table state
 void Table::printTableState(){
 	cout << "Cards on the table:" << endl;
 	cout << "Clubs:";
@@ -175,6 +185,9 @@ void Table::printTableState(){
 	cout << endl;
 }
 
+// modifies: vector<player> players_
+// ensures: convert from humanPlayer to cpuPlayer
+// requires: original converPlayerId is (0,3)
 void Table::convertPlayer() {
   Player * del = players_[convertPlayerId];
   CpuPlayer * temp = new CpuPlayer(del->getHand(), del->getDiscard(), convertPlayerId, this);
@@ -184,11 +197,13 @@ void Table::convertPlayer() {
   convertPlayerId = -1;
 }
 
+// modifies: playedCards_
+// ensures: playedCards_ add one card at the end
 void Table::pushCard(Card c) {
   playedCards_.push_back(c);
 }
 
-
+// ensures: print the whole Deck_
 void Table::printDeck(){
 	assert(Deck_.size() == 52);
 	for(int i = 0 ; i < Deck_.size(); i++){
@@ -202,6 +217,9 @@ void Table::printDeck(){
 	}
 }
 
+// return: score of specific player
+// requires: the input parameter is in between (0,3)
+// ensures: print discard cards
 int Table::printDiscardAndGetPlayerNewScore(int c){
 	int sum = 0;
 	for(int i = 0; i < players_[c]->getDiscard().size(); i++){
@@ -211,6 +229,8 @@ int Table::printDiscardAndGetPlayerNewScore(int c){
 	return sum;
 }
 
+// ensures: print all players' scores
+// requires: players_ size is 4
 void Table::printScore(){
 	assert(players_.size()==4);
 	for(int i = 0; i < players_.size(); i++){
@@ -223,7 +243,9 @@ void Table::printScore(){
 
 }
 
-
+// returns: bool whether the game has been reseted or not
+// ensures: a new round begin or the game ends
+// modifies: Deck_ and players_ and playedCards_
 bool Table::resetGame() {
   printScore();
   bool end = false;
@@ -253,6 +275,8 @@ bool Table::resetGame() {
   return true;
 }
 
+// return: the index of player in players_ which has 7spade card
+// requires: Deck_ contains 7spade
 int Table::searchFor7spade(){
 	for(int i = 0; i < Deck_.size(); i++){
 		if (Deck_[i].getRank() == SEVEN && Deck_[i].getSuit() == SPADE){
@@ -262,6 +286,8 @@ int Table::searchFor7spade(){
 	}
 }
 
+// return: whether should begin new round or not
+// ensures: if should begin new round, cout
 bool Table::beginRound(){
 	if(resetGame() == true){
 		cout << "A new round begins. It's player " << searchFor7spade()+1 << "'s turn to play." << endl;
