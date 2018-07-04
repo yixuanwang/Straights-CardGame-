@@ -59,7 +59,7 @@ Table::Table(char **argv):Deck_{initDeck()}, seed{strtol(argv[1], NULL, 10)}, co
 			assert(false);
 		}
 	}
-	cout << "A new round begins. It's player " << searchFor7spade() << "'s turn to play." << endl;
+	cout << "A new round begins. It's player " << searchFor7spade()+1 << "'s turn to play." << endl;
 	notify();
 }
 
@@ -237,7 +237,7 @@ void Table::printScore(){
 		cout << "Player " << i+1 << "'s discards:";
 		int newScore = printDiscardAndGetPlayerNewScore(i);
 		cout << endl;
-		cout << "Player " << i+1 << "'s score is " << scores_[i] << " + " << newScore << " = " << (scores_[i] + newScore) << endl;
+		cout << "Player " << i+1 << "'s score: " << scores_[i] << " + " << newScore << " = " << (scores_[i] + newScore) << endl;
 		scores_[i] = scores_[i] + newScore;
 	}
 
