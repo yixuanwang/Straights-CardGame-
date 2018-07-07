@@ -5,5 +5,8 @@
 ._*
 
 # dependencies and objects
-.o
-.d
+*.o
+*.d
+*.exe
+
+gtkmm-examples/
