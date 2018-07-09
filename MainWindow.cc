@@ -56,26 +56,26 @@ MainWindow::MainWindow()
 
   //Players section
   m_Box.pack_start(m_PlayerGrid, Gtk::PACK_EXPAND_WIDGET);
-  m_Frame1.set_size_request(300);
+  m_Frame1.set_size_request(300,50);
   m_PlayerGrid.attach(m_Frame1,0,0,10,1);
   // m_Box.pack_start(m_Frame1, Gtk::PACK_SHRINK);
   m_Point1.set_label("0 points\n0 discards");
   m_Frame1.add(m_Point1);
 
   m_PlayerGrid.attach(m_Frame2,12,0,1,1);
-  m_Frame2.set_size_request(300);
+  m_Frame2.set_size_request(300,50);
   // m_Box.pack_start(m_Frame2, Gtk::PACK_SHRINK);
   m_Point2.set_label("0 points\n0 discards");
   m_Frame2.add(m_Point2);
 
   m_PlayerGrid.attach(m_Frame3,13,0,1,1);
-  m_Frame3.set_size_request(300);
+  m_Frame3.set_size_request(300,50);
   // m_Box.pack_start(m_Frame3, Gtk::PACK_SHRINK);
   m_Point3.set_label("0 points\n0 discards");
   m_Frame3.add(m_Point3);
 
   m_PlayerGrid.attach(m_Frame4,14,0,1,1);
-  m_Frame4.set_size_request(300);
+  m_Frame4.set_size_request(300,50);
   // m_Box.pack_start(m_Frame4, Gtk::PACK_SHRINK);
   m_Point4.set_label("0 points\n0 discards");
   m_Frame4.add(m_Point4);
