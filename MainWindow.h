@@ -25,13 +25,14 @@ protected:
   Gtk::Entry m_EntrySeed;
   std::vector <Gtk::Image> m_Images;
   Gtk::Grid m_Grid;
+  Gtk::Grid m_PlayerGrid;
 
 
   Gtk::ButtonBox m_Hand;
   Gtk::Button m_ButtonRage;
 
   //frame
-  Gtk::Frame m_FrameHand, m_Frame1, m_Frame2, m_Frame3, m_Frame4;
+  Gtk::Frame m_FrameHand, m_Frame1, m_Frame2, m_Frame3, m_Frame4, m_FrameTurn;
 
   //labels
   Gtk::Label m_Point1, m_Point2, m_Point3, m_Point4;
