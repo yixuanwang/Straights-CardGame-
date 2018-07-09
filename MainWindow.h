@@ -20,6 +20,10 @@ protected:
   Gtk::Button m_ButtonShuffle, m_ButtonQuit;
 
   Gtk::Entry m_EntrySeed;
+  // Gtk::ButtonBox m_ImageBox;
+  std::vector <Gtk::Image> m_Images;
+  Gtk::Image m_Image2;
+  Gtk::Grid m_Grid;
 };
 
 #endif
