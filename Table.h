@@ -4,6 +4,7 @@
 #include <vector>
 #include "Player.h"
 #include "Card.h"
+#include "MainWindow.h"
 
 class Player;
 
@@ -16,6 +17,7 @@ class Table
   int convertPlayerId;
   int seed;
   std::vector<int> scores_;
+  MainWindow * mainWindow_;
 
 // return decks
   std::vector<Card> initDeck();
@@ -54,7 +56,7 @@ public:
 
 // ctor
 // ensures: this->Deck_ is shuffled, seed is argv[1], this->convertPlayerId is initialized as -1, this->scores_ is initialized as {0,0,0,0}, this->players_ is intialized based on cin
-Table(int, char **);
+Table(MainWindow *, int argc = 1, char ** argv = nullptr);
 
 // dtor
 //modifies: this->players_ and stack
@@ -85,5 +87,8 @@ Table(int, char **);
 
 // ensures: print the table state
   void printTableState();
+
+
+  void setSeed(int);
 };
 #endif

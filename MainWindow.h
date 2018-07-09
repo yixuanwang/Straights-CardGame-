@@ -4,6 +4,9 @@
 #include <gtkmm.h>
 #include <vector>
 #include "ImageButton.h"
+#include "Table.h"
+
+class Table;
 
 class MainWindow : public Gtk::Window {
 public:
@@ -11,11 +14,12 @@ public:
   virtual ~MainWindow();
 
 protected:
-
+  Table *table;
   //Signal handlers
   void onButtonShuffle();
   void onButtonQuit();
   void onButtonRage();
+  void updateHand(vector<Card>);
 
   //Child widgets
   Gtk::Box m_Box;
@@ -38,7 +42,7 @@ protected:
   Gtk::Label m_Point1, m_Point2, m_Point3, m_Point4;
 
   //Playerhand
-  std::vector<ImageButton*> Hand1, Hand2, Hand3, Hand4, emptyHand;
+  std::vector<ImageButton*> hand_;
 };
 
 #endif

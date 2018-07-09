@@ -34,10 +34,14 @@ void Table::setConvertPlayerId(int c){
 	convertPlayerId = c;
 }
 
+void Table::setSeed(int i){
+	seed = i;
+}
+
 // ctor
 // requires: argc is at least 2, argv[1] exists
 // ensures: Deck_ is shuffled, seed is argv[1], convertPlayerId is initialized as -1, score is initialized as {0,0,0,0}, players_ is intialized based on cin
-Table::Table(int argc, char **argv):Deck_{initDeck()}, convertPlayerId{-1}{
+Table::Table(MainWindow * m, int argc, char **argv):Deck_{initDeck()}, convertPlayerId{-1}, mainWindow_{m}{
 	if(argc != 1){
 		seed = strtol(argv[1], NULL, 10);
 	}else{
@@ -97,7 +101,8 @@ void Table::notify(){
 		}
 
 	}
-	players_[turnPlayer_]->play();
+	// players_[turnPlayer_]->play();
+	mainWindow_->updateHand(players_[turnPlayer_]->getHand());
 }
 
 // modifies: turnPlayer_
