@@ -45,7 +45,7 @@ MainWindow::MainWindow()
       if(j!=12){
         m_Images[i*13+j]->set_margin_right(40);
       }
-      m_Images[i*13+j]->set_margin_bottom(10);    
+      m_Images[i*13+j]->set_margin_bottom(10);
     }
   }
 
@@ -150,6 +150,8 @@ void MainWindow::onButtonQuit()
 
 void MainWindow::onButtonRage()
 {
+  table->setConvertPlayerId(playerTurn_);
+  table->setTurnPlayer();
 }
 
 void MainWindow::onButtonHand0(){
@@ -259,7 +261,7 @@ string MainWindow::humanCpu(int i){
     case(Gtk::RESPONSE_YES): {
       return "h";
       break;
-    } 
+    }
     case(Gtk::RESPONSE_NO): {
       return "c";
       break;
@@ -353,7 +355,7 @@ void MainWindow::updateImageGrid(vector<Card> playedCards_){
   //     if(j!=12){
   //       m_Images[i*13+j]->set_margin_right(40);
   //     }
-  //     m_Images[i*13+j]->set_margin_bottom(10);    
+  //     m_Images[i*13+j]->set_margin_bottom(10);
   //   }
   // }
   show_all_children();

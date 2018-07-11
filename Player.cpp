@@ -71,6 +71,7 @@ HumanPlayer::~HumanPlayer()
 }
 
 void HumanPlayer::play(int n) {
+  //get legal plays
   vector<Card> legalPlay = getLegalPlay();
   //if 1st player with 7spades
   vector<Card> tableCard = table_->getPlayedCard();
@@ -90,6 +91,7 @@ void HumanPlayer::play(int n) {
         update(hand_[n]);
         //delete card from hand_
         hand_.erase(hand_.begin() + n);
+        break;
       }
     }
     if(!endturn) {

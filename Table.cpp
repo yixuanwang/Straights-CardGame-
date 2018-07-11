@@ -254,6 +254,8 @@ void Table::printScore(){
 // ensures: a new round begin or the game ends
 // modifies: Deck_ and players_ and playedCards_
 bool Table::resetGame() {
+	printTableState();
+	mainWindow_->updateHand(players_[turnPlayer_]->getHand(), turnPlayer_);
   printScore();
   bool end = false;
   int smallest = scores_[0];
@@ -283,6 +285,7 @@ bool Table::resetGame() {
     vector<Card> temp(Deck_.begin()+i*13, Deck_.begin()+i*13+13);
     players_[i]->resetHand(temp);
   }
+	printTableState();
   return true;
 }
 
