@@ -60,9 +60,10 @@ string suitToString(Suit s){
 	}
 }
 
-string Card::getString(Suit s, Rank r){
-	return (rankToString(r)+suitToString(s));
+string Card::getString(){
+	return (rankToString(rank_)+suitToString(suit_));
 }
+
 bool operator==(const Card &a, const Card &b){
 	return a.getSuit() == b.getSuit() && a.getRank() == b.getRank();
 }

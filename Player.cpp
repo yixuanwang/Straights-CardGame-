@@ -70,14 +70,8 @@ HumanPlayer::~HumanPlayer()
 {
 }
 
-void HumanPlayer::play() {
-  table_->printTableState();
+void HumanPlayer::play(int n) {
   vector<Card> legalPlay = getLegalPlay();
-  cout << "Your hand:";
-  for(int i=0; i<hand_.size(); i++){
-    cout << " " << hand_[i];
-  }
-  cout << endl;
   //if 1st player with 7spades
   vector<Card> tableCard = table_->getPlayedCard();
   if(tableCard.size() == 0){
@@ -87,63 +81,34 @@ void HumanPlayer::play() {
       }
     }
   }
-  cout << "Legal plays:";
-  for(int i=0; i<legalPlay.size(); i++){
-    cout << " " << legalPlay[i];
-  }
-  cout << endl;
   bool endturn = false;
-  while(!endturn) {
-    cout << ">";
-    cin >> command_;
-    if(command_.type == PLAY) {
-      for(int i=0; i<legalPlay.size(); i++) {
-        if(command_.card == legalPlay[i]) {
-          cout << "Player " << playerID_+1 << " plays " << command_.card << "." << endl;
-          endturn = true;
-          update(command_.card);
-          //delete card from hand_
-          for(int j=0; j<hand_.size(); j++) {
-            if(command_.card == hand_[j]){
-              hand_.erase(hand_.begin() + j);
-            }
-          }
-          break;
-        }
-      }
-      if(!endturn) {
-        cout << "This is not a legal play." << endl;
-      }
-
-    } else if (command_.type == DISCARD) {
-      if(legalPlay.size() == 0) {
-        discard_.push_back(command_.card);
-        cout << "Player " << playerID_+1 << " discards " << command_.card << "." << endl;
+  // while(!endturn) {
+  if(legalPlay.size() != 0){
+    for(int i=0; i<legalPlay.size(); i++) {
+      if(hand_[n] == legalPlay[i]) {
         endturn = true;
+        update(hand_[n]);
         //delete card from hand_
-        for(int j=0; j<hand_.size(); j++) {
-          if(command_.card == hand_[j]){
-            hand_.erase(hand_.begin() + j);
-          }
-        }
-      } else {
-        cout << "You have a legal play. You may not discard." << endl;
+        hand_.erase(hand_.begin() + n);
       }
-    } else if (command_.type == DECK) {
-      table_->printDeck();
-    } else if (command_.type == QUIT) {
-      return;
-    } else if (command_.type == RAGEQUIT) {
-      cout << "Player " << playerID_+1 << " ragequits. A computer will now take over." << endl;
-      table_->setConvertPlayerId(playerID_);
-      endturn = true;
-    } else if (command_.type == BAD_COMMAND) {
-      assert(false);
     }
+    if(!endturn) {
+      table_->errorMessage("This is not a legal play");
+    }
+  } else if(legalPlay.size() == 0) {
+    discard_.push_back(hand_[n]);
+    endturn = true;
+    //delete card from hand_
+    hand_.erase(hand_.begin() + n);
   }
-  table_->setTurnPlayer();
+  if(endturn){
+    table_->setTurnPlayer();
+  }
 }
 
+bool HumanPlayer::isHuman(){
+  return true;
+}
 ///////////////////////////////////////////////////////////////////////////
 /////////////////////////////  CPUPlayer  /////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
@@ -157,7 +122,7 @@ CpuPlayer::~CpuPlayer()
 {
 }
 
-void CpuPlayer::play()
+void CpuPlayer::play(int n)
 {
   vector<Card> legalPlay = getLegalPlay();
   //if 1st player with 7spades
@@ -184,4 +149,8 @@ void CpuPlayer::play()
     }
   }
   table_->setTurnPlayer();
+}
+
+bool CpuPlayer::isHuman(){
+  return false;
 }

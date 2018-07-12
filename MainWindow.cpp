@@ -96,6 +96,33 @@ MainWindow::MainWindow()
   m_ButtonRage.signal_clicked().connect(sigc::mem_fun(*this,
               &MainWindow::onButtonRage) );
 
+  hand_[0]->signal_clicked().connect(sigc::mem_fun(*this,
+              &MainWindow::onButtonHand0) );
+  hand_[1]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand1) );
+  hand_[2]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand2) );
+  hand_[3]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand3) );
+  hand_[4]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand4) );
+  hand_[5]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand5) );
+  hand_[6]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand6) );
+  hand_[7]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand7) );
+  hand_[8]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand8) );
+  hand_[9]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand9) );
+  hand_[10]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand10) );
+  hand_[11]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand11) );
+  hand_[12]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand12) );
+
   show_all_children();
 }
 
@@ -106,6 +133,8 @@ MainWindow::~MainWindow() {
 
 void MainWindow::onButtonShuffle()
 {
+  // cout << "clicked or not? ";
+  // cout << m_ButtonShuffle.clicked;
   string seed = m_EntrySeed.get_text();
   stringstream geek(seed);
   int x = 0;
@@ -122,16 +151,165 @@ void MainWindow::onButtonRage()
 {
 }
 
-void MainWindow::updateHand(vector<Card> playerHand){
+void MainWindow::onButtonHand0(){
+  table->playerPlay(playerTurn_, 0);
+}
+void MainWindow::onButtonHand1(){
+  table->playerPlay(playerTurn_, 1);
+}
+void MainWindow::onButtonHand2(){
+  table->playerPlay(playerTurn_, 2);
+}
+void MainWindow::onButtonHand3(){
+  table->playerPlay(playerTurn_, 3);
+}
+void MainWindow::onButtonHand4(){
+  table->playerPlay(playerTurn_, 4);
+}
+void MainWindow::onButtonHand5(){
+  table->playerPlay(playerTurn_, 5);
+}
+void MainWindow::onButtonHand6(){
+  table->playerPlay(playerTurn_, 6);
+}
+void MainWindow::onButtonHand7(){
+  table->playerPlay(playerTurn_, 7);
+}
+void MainWindow::onButtonHand8(){
+  table->playerPlay(playerTurn_, 8);
+}
+void MainWindow::onButtonHand9(){
+  table->playerPlay(playerTurn_, 9);
+}
+void MainWindow::onButtonHand10(){
+  table->playerPlay(playerTurn_, 10);
+}
+void MainWindow::onButtonHand11(){
+  table->playerPlay(playerTurn_, 11);
+}
+void MainWindow::onButtonHand12(){
+  table->playerPlay(playerTurn_, 12);
+}
+
+void MainWindow::updateHand(vector<Card> playerHand, int turnPlayer_){
+  playerTurn_ = turnPlayer_;
+  m_FrameTurn.set_label("Player "+ to_string(turnPlayer_+1) +"'s turn");
   for(int i=0; i<hand_.size(); i++){
     delete hand_[i];
   }
   hand_.clear();
   for(int i=0; i<playerHand.size(); i++){
-
     ImageButton *temp = new ImageButton("img/"+playerHand[i].getString()+".png");
     hand_.push_back(temp);
     m_Hand.pack_start(*hand_[i]);
   }
+  for(int i = playerHand.size(); i < 13; i++){
+    ImageButton *temp = new ImageButton("img/nothing.png");
+    hand_.push_back(temp);
+    m_Hand.pack_start(*hand_[i]);
+  }
   m_Hand.set_layout(Gtk::BUTTONBOX_START);
+  show_all_children();
+}
+
+void MainWindow::updatePlayer(int player, int discard, int score) {
+
+}
+
+string MainWindow::humanCpu(int i){
+  Gtk::MessageDialog dialog(*this, "Human or Computer?",
+          false /* use_markup */, Gtk::MESSAGE_QUESTION,
+          Gtk::BUTTONS_YES_NO);
+  string temp = "Is player " + to_string(i+1) + " a human?";
+  dialog.set_secondary_text(temp);
+
+  int result = dialog.run();
+
+  //Handle the response:
+  switch(result) {
+    case(Gtk::RESPONSE_YES): {
+      return "h";
+      break;
+    } 
+    case(Gtk::RESPONSE_NO): {
+      return "c";
+      break;
+    }
+    default: {
+      return "";
+      break;
+    }
+  }
+}
+
+void MainWindow::errorMessage(string e){
+  Gtk::MessageDialog dialog(*this, "Ilegal play",
+          false /* use_markup */, Gtk::MESSAGE_ERROR);
+  dialog.set_secondary_text(e);
+  dialog.run();
+}
+
+// int MainWindow::getClickedCard(){
+//   return clickedCard_;
+// }
+
+int rankToInts(Rank r){
+  switch(r){
+    case ACE:
+      return 1;
+    case TWO:
+      return 2;
+    case THREE:
+      return 3;
+    case FOUR:
+      return 4;
+    case FIVE:
+      return 5;
+    case SIX:
+      return 6;
+    case SEVEN:
+      return 7;
+    case EIGHT:
+      return 8;
+    case NINE:
+      return 9;
+    case TEN:
+      return 10;
+    case JACK:
+      return 11;
+    case QUEEN:
+      return 12;
+    case KING:
+      return 13;
+  }
+}
+
+int suitToInt(Suit s){
+  switch(s){
+    case CLUB:
+    return 0;
+    case DIAMOND:
+    return 1;
+    case HEART:
+    return 2;
+    case SPADE:
+    return 3;
+  }
+}
+
+void MainWindow::updateImageGrid(vector<Card> playedCards_){
+  for(int i = 0; i< playedCards_.size(); i++){
+    int x = rankToInts(playedCards_[i].getRank()) -1;
+    int y = suitToInt(playedCards_[i].getSuit());
+    string s = "img/"+playedCards_[i].getString()+".png";
+    m_Images[y*13+x] = Gtk::Image(s);
+    // m_Grid.attach(m_Images[y*13+x-1],x,y,1,1);
+  }
+  show_all_children();
+}
+
+void MainWindow::printMessage(string s) {
+  Gtk::MessageDialog dialog(*this, "Score");
+  dialog.set_secondary_text(s);
+  dialog.run();
 }

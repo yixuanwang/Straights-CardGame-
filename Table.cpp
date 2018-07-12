@@ -53,10 +53,7 @@ Table::Table(MainWindow * m, int argc, char **argv):Deck_{initDeck()}, convertPl
 	scores_ = score;
 	shuffle();
 	for(int i = 0; i < 4; i++){
-		cout << "Is player " << i+1 << " a human(h) or a computer(c)?" << endl;
-		string c;
-		cout << ">";
-		cin >> c;
+		string c = mainWindow_->humanCpu(i);
 		vector <Card> initHand (Deck_.begin()+i*13, Deck_.begin()+13+i*13);
 		if(c=="h"){
 			HumanPlayer *temp = new HumanPlayer(initHand, v, i, this);
@@ -101,8 +98,13 @@ void Table::notify(){
 		}
 
 	}
-	// players_[turnPlayer_]->play();
-	mainWindow_->updateHand(players_[turnPlayer_]->getHand());
+	//if human player
+	if(players_[turnPlayer_]->isHuman()){
+		printTableState();
+		mainWindow_->updateHand(players_[turnPlayer_]->getHand(), turnPlayer_);
+	}else{//if cmoputer player
+		players_[turnPlayer_]->play(0);
+	}
 }
 
 // modifies: turnPlayer_
@@ -180,19 +182,7 @@ void Table::printRanksOfSuit(Suit s){
 
 // ensures: print the table state
 void Table::printTableState(){
-	cout << "Cards on the table:" << endl;
-	cout << "Clubs:";
-	printRanksOfSuit(CLUB);
-	cout << endl;
-	cout << "Diamonds:";
-	printRanksOfSuit(DIAMOND);
-	cout << endl;
-	cout << "Hearts:";
-	printRanksOfSuit(HEART);
-	cout << endl;
-	cout << "Spades:";
-	printRanksOfSuit(SPADE);
-	cout << endl;
+	mainWindow_->updateImageGrid(playedCards_);
 }
 
 // modifies: vector<player> players_
@@ -234,7 +224,7 @@ int Table::printDiscardAndGetPlayerNewScore(int c){
 	int sum = 0;
 	for(int i = 0; i < players_[c]->getDiscard().size(); i++){
 		sum += rankToInt(players_[c]->getDiscard()[i].getRank());
-		cout << " " << players_[c]->getDiscard()[i];
+		ss << " " << players_[c]->getDiscard()[i];
 	}
 	return sum;
 }
@@ -243,14 +233,19 @@ int Table::printDiscardAndGetPlayerNewScore(int c){
 // requires: players_ size is 4
 void Table::printScore(){
 	assert(players_.size()==4);
+	ss.clear();
+	ss.str(string());
 	for(int i = 0; i < players_.size(); i++){
-		cout << "Player " << i+1 << "'s discards:";
+		ss << "Player " << i+1 << "'s discards:\n";
 		int newScore = printDiscardAndGetPlayerNewScore(i);
-		cout << endl;
-		cout << "Player " << i+1 << "'s score: " << scores_[i] << " + " << newScore << " = " << (scores_[i] + newScore) << endl;
+		ss << "\n";
+		ss << "Player " << i+1 << "'s score: " << scores_[i] << " + " << newScore << " = " << (scores_[i] + newScore) << "\n";
 		scores_[i] = scores_[i] + newScore;
 	}
-
+	string s = ss.str();
+	ss.clear();
+	ss.str(string());
+	mainWindow_->printMessage(s);
 }
 
 // returns: bool whether the game has been reseted or not
@@ -271,7 +266,11 @@ bool Table::resetGame() {
   if(end){
     for(int i=0; i<scores_.size(); i++) {
       if(scores_[i] == smallest) {
-        cout << "Player " << i+1 << " wins!" << endl;
+      	ss.clear();
+		ss.str(string());
+        ss << "Player " << i+1 << " wins!";
+        string s = ss.str();
+        mainWindow_->printMessage(s);
       }
     }
     return false;
@@ -306,4 +305,19 @@ bool Table::beginRound(){
 	} else {
 		return false;
 	}
+}
+
+
+int Table::getTurnPlayer(){
+	cout << "in table";
+	cout << turnPlayer_<<endl;
+	return turnPlayer_;
+}
+
+void Table::errorMessage(string e){
+	mainWindow_->errorMessage(e);
+}
+
+void Table::playerPlay(int n, int card) {
+	players_[n]->play(card);
 }

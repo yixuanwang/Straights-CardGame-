@@ -22,6 +22,7 @@ protected:
   */
   std::vector<Card> getLegalPlay();
 public:
+  virtual bool isHuman() =0;
   /*
   Constructor
   ensures: Player is initialized with handcard, discardcards, playerID and a table
@@ -48,18 +49,21 @@ public:
   ensures: this->discard is emptied and a new hand is distributed
   */
   void resetHand(std::vector<Card>);
-  virtual void play() = 0;
   /*
   modifies: this->table_
   ensures: a card get added to the table pile
   */
   void update(Card card);
+
+  virtual void play(int) =0;
 };
 
 class HumanPlayer : public Player
 {
   Command command_;
 public:
+  bool isHuman() override;
+
   /*
   Constructor
   ensures: HumanPlayer is initialized with handcard, discardcards, playerID and a table
@@ -76,12 +80,15 @@ public:
   ensures: a valid play has been made and this player's turn is ended
   requires: hand_ is not empty
   */
-  void play() override;
+  void play(int) override;
+
 };
 
 class CpuPlayer : public Player
 {
 public:
+  bool isHuman() override;
+
   /*
   Constructor
   ensures: CpuPlayer is initialized with handcard, discardcards, playerID and a table
@@ -98,7 +105,7 @@ public:
   ensures: a valid play has been made and this player's turn is ended
   requires: hand_ is not empty
   */
-  void play() override;
+  void play(int) override;
 };
 
 #endif

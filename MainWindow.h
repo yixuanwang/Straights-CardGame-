@@ -12,14 +12,31 @@ class MainWindow : public Gtk::Window {
 public:
   MainWindow();
   virtual ~MainWindow();
+  std::string humanCpu(int i);
+  void errorMessage(std::string);
 
 protected:
   Table *table;
+  int playerTurn_;
+  // int clickedCard_;
   //Signal handlers
   void onButtonShuffle();
   void onButtonQuit();
   void onButtonRage();
-  void updateHand(vector<Card>);
+  void onButtonHand0();
+  void onButtonHand1();
+  void onButtonHand2();
+  void onButtonHand3();
+  void onButtonHand4();
+  void onButtonHand5();
+  void onButtonHand6();
+  void onButtonHand7();
+  void onButtonHand8();
+  void onButtonHand9();
+  void onButtonHand10();
+  void onButtonHand11();
+  void onButtonHand12();
+  
 
   //Child widgets
   Gtk::Box m_Box;
@@ -43,6 +60,14 @@ protected:
 
   //Playerhand
   std::vector<ImageButton*> hand_;
+
+  public:
+    void updateHand(std::vector<Card>, int);
+    void updateImageGrid(std::vector<Card>);
+    void updatePlayer(int, int, int);
+    void printMessage(std::string);
+
+    // int getClickedCard();
 };
 
 #endif

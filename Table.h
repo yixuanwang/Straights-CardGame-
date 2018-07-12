@@ -2,10 +2,12 @@
 #define Table_H
 
 #include <vector>
+#include <sstream>
 #include "Player.h"
 #include "Card.h"
 #include "MainWindow.h"
 
+class MainWindow;
 class Player;
 
 class Table
@@ -13,11 +15,12 @@ class Table
   std::vector<Card> playedCards_;
   std::vector<Card> Deck_;
   std::vector<Player*> players_;
-  int turnPlayer_;
   int convertPlayerId;
   int seed;
   std::vector<int> scores_;
   MainWindow * mainWindow_;
+  int turnPlayer_;
+  std::stringstream ss;
 
 // return decks
   std::vector<Card> initDeck();
@@ -48,6 +51,8 @@ class Table
 // ensures: if should begin new round, cout
   bool beginRound(); // check 7 spade and set turn
 public:
+
+  void playerPlay(int, int);
 // // return this->playedCards_
   std::vector<Card> getPlayedCard();
 
@@ -90,5 +95,10 @@ Table(MainWindow *, int argc = 1, char ** argv = nullptr);
 
 
   void setSeed(int);
+
+  int getTurnPlayer();
+
+  void errorMessage(std::string);
+
 };
 #endif
