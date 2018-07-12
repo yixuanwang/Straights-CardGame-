@@ -366,3 +366,39 @@ void MainWindow::printMessage(string s) {
   dialog.set_secondary_text(s);
   dialog.run();
 }
+
+void MainWindow::updateDiscard(int player, int discard, int score){
+  stringstream tempss;
+  string temps;
+  tempss << score << " points\n" << discard << " discards";
+  temps = tempss.str();
+
+  if(player == 0){
+    m_Point1.set_label(temps);
+  } else if (player == 1) {
+    m_Point2.set_label(temps);
+  } else if (player == 2) {
+    m_Point3.set_label(temps);
+  } else if (player == 3) {
+    m_Point4.set_label(temps);
+  }
+  show_all_children();
+}
+
+void MainWindow::resetGrid() {
+  cout << "m_Images size" << m_Images.size() << endl;
+  for(int i = 0; i < 52; i++){
+    delete m_Images[i];
+    m_Images[i] = nullptr;
+    m_Images.push_back(new Gtk::Image("img/nothing.png"));
+  }
+  for(int i=0; i < 4; i++){
+    for(int j=0; j<13; j++){
+      m_Grid.attach(*m_Images[i*13+j],j,i,1,1);
+      if(j!=12){
+        m_Images[i*13+j]->set_margin_right(40);
+      }
+      m_Images[i*13+j]->set_margin_bottom(10);
+    }
+  }
+}

@@ -102,6 +102,8 @@ void HumanPlayer::play(int n) {
     endturn = true;
     //delete card from hand_
     hand_.erase(hand_.begin() + n);
+    //update discard number on GUI
+    table_->updateDiscard(discard_.size());
   }
   if(endturn){
     table_->setTurnPlayer();
@@ -137,11 +139,12 @@ void CpuPlayer::play(int n)
     }
   }
   if(legalPlay.size() == 0) {
-    cout << "Player " << playerID_+1 << " discards " << hand_[0] << "." << endl;
+    //cout << "Player " << playerID_+1 << " discards " << hand_[0] << "." << endl;
     discard_.push_back(hand_[0]);
     hand_.erase(hand_.begin());
+    table_->updateDiscard(discard_.size());
   } else {
-    cout << "Player " << playerID_+1 << " plays " << legalPlay[0] << "." << endl;
+    //cout << "Player " << playerID_+1 << " plays " << legalPlay[0] << "." << endl;
     update(legalPlay[0]);
     //delete card from hand_
     for(int j=0; j<hand_.size(); j++) {

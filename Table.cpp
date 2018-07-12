@@ -256,6 +256,9 @@ void Table::printScore(){
 bool Table::resetGame() {
 	printTableState();
 	mainWindow_->updateHand(players_[turnPlayer_]->getHand(), turnPlayer_);
+	for(int i=0; i<4; i++) {
+		mainWindow_->updateDiscard(i, players_[i]->getDiscard().size(), scores_[i]);
+	}
   printScore();
   bool end = false;
   int smallest = scores_[0];
@@ -285,7 +288,7 @@ bool Table::resetGame() {
     vector<Card> temp(Deck_.begin()+i*13, Deck_.begin()+i*13+13);
     players_[i]->resetHand(temp);
   }
-	printTableState();
+	mainWindow_->resetGrid();
   return true;
 }
 
@@ -325,4 +328,8 @@ void Table::errorMessage(string e){
 
 void Table::playerPlay(int n, int card) {
 	players_[n]->play(card);
+}
+
+void Table::updateDiscard(int n) {
+	mainWindow_->updateDiscard(turnPlayer_, n, scores_[turnPlayer_]);
 }

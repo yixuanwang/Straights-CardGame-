@@ -52,6 +52,7 @@ class Table
   bool beginRound(); // check 7 spade and set turn
 public:
 
+  void updateDiscard(int);
   void playerPlay(int, int);
 // // return this->playedCards_
   std::vector<Card> getPlayedCard();

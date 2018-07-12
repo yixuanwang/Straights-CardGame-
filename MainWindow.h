@@ -14,7 +14,8 @@ public:
   virtual ~MainWindow();
   std::string humanCpu(int i);
   void errorMessage(std::string);
-
+  void updateDiscard(int, int, int);
+  void resetGrid();
 protected:
   Table *table;
   int playerTurn_;
@@ -36,7 +37,7 @@ protected:
   void onButtonHand10();
   void onButtonHand11();
   void onButtonHand12();
-  
+
 
   //Child widgets
   Gtk::Box m_Box;
