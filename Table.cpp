@@ -182,7 +182,9 @@ void Table::printRanksOfSuit(Suit s){
 
 // ensures: print the table state
 void Table::printTableState(){
+	cout << "test1" << endl;
 	mainWindow_->updateImageGrid(playedCards_);
+	cout << "test2" << endl;
 }
 
 // modifies: vector<player> players_

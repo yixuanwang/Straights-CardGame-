@@ -44,7 +44,7 @@ protected:
   Gtk::Button m_ButtonShuffle, m_ButtonQuit;
 
   Gtk::Entry m_EntrySeed;
-  std::vector <Gtk::Image> m_Images;
+  std::vector <Gtk::Image*> m_Images;
   Gtk::Grid m_Grid;
   Gtk::Grid m_PlayerGrid;
 
@@ -53,7 +53,7 @@ protected:
   Gtk::Button m_ButtonRage;
 
   //frame
-  Gtk::Frame m_FrameHand, m_Frame1, m_Frame2, m_Frame3, m_Frame4, m_FrameTurn;
+  Gtk::Frame m_FrameHand, m_Frame1, m_Frame2, m_Frame3, m_Frame4, m_FrameTurn, m_FrameTable;
 
   //labels
   Gtk::Label m_Point1, m_Point2, m_Point3, m_Point4;

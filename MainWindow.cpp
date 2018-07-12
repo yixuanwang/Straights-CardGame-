@@ -12,13 +12,13 @@ MainWindow::MainWindow()
   m_Frame2("Player 2"),
   m_Frame3("Player 3"),
   m_Frame4("Player 4"),
-  m_FrameTurn("Player x's turn")
+  m_FrameTurn("Player x's turn"),
+  m_FrameTable("Cards on the table")
 {
   table = new Table(this);
   for(int i = 0; i < 52; i++){
-    m_Images.push_back(Gtk::Image("img/nothing.png"));
+    m_Images.push_back(new Gtk::Image("img/nothing.png"));
   }
-
   set_title("Straights");
   add(m_Box);
 
@@ -36,15 +36,16 @@ MainWindow::MainWindow()
   m_ButtonBox.set_layout(Gtk::BUTTONBOX_END);
 
 
-  m_Box.pack_start(m_Grid, Gtk::PACK_SHRINK);
+  m_Box.pack_start(m_FrameTable, Gtk::PACK_SHRINK);
 
+  m_FrameTable.add(m_Grid);
   for(int i=0; i < 4; i++){
     for(int j=0; j<13; j++){
-      m_Grid.attach(m_Images[i*13+j],j,i,1,1);
+      m_Grid.attach(*m_Images[i*13+j],j,i,1,1);
       if(j!=12){
-        m_Images[i*13+j].set_margin_right(40);
+        m_Images[i*13+j]->set_margin_right(40);
       }
-      m_Images[i*13+j].set_margin_bottom(10);    
+      m_Images[i*13+j]->set_margin_bottom(10);    
     }
   }
 
@@ -209,6 +210,34 @@ void MainWindow::updateHand(vector<Card> playerHand, int turnPlayer_){
     m_Hand.pack_start(*hand_[i]);
   }
   m_Hand.set_layout(Gtk::BUTTONBOX_START);
+
+  hand_[0]->signal_clicked().connect(sigc::mem_fun(*this,
+              &MainWindow::onButtonHand0) );
+  hand_[1]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand1) );
+  hand_[2]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand2) );
+  hand_[3]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand3) );
+  hand_[4]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand4) );
+  hand_[5]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand5) );
+  hand_[6]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand6) );
+  hand_[7]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand7) );
+  hand_[8]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand8) );
+  hand_[9]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand9) );
+  hand_[10]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand10) );
+  hand_[11]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand11) );
+  hand_[12]->signal_clicked().connect(sigc::mem_fun(*this,
+                &MainWindow::onButtonHand12) );
+
   show_all_children();
 }
 
@@ -298,13 +327,35 @@ int suitToInt(Suit s){
 }
 
 void MainWindow::updateImageGrid(vector<Card> playedCards_){
+  int c = 0;
+  if(m_Images.size() == 0){
+    for(int i = 0; i < 52; i++){
+      m_Images.push_back(new Gtk::Image("img/nothing.png"));
+    }
+  }
   for(int i = 0; i< playedCards_.size(); i++){
+    cout << c++ << endl;
     int x = rankToInts(playedCards_[i].getRank()) -1;
     int y = suitToInt(playedCards_[i].getSuit());
     string s = "img/"+playedCards_[i].getString()+".png";
-    m_Images[y*13+x] = Gtk::Image(s);
-    // m_Grid.attach(m_Images[y*13+x-1],x,y,1,1);
+    cout << m_Images.size() << endl;
+    delete m_Images[y*13+x];
+    m_Images[y*13+x] = new Gtk::Image(s);
+    m_Grid.attach(*m_Images[y*13+x],x,y,1,1);
+    if(x!=12){
+      m_Images[y*13+x]->set_margin_right(40);
+    }
+    m_Images[y*13+x]->set_margin_bottom(10);
   }
+  // for(int i=0; i < 4; i++){
+  //   for(int j=0; j<13; j++){
+  //     m_Grid.attach(*m_Images[i*13+j],j,i,1,1);
+  //     if(j!=12){
+  //       m_Images[i*13+j]->set_margin_right(40);
+  //     }
+  //     m_Images[i*13+j]->set_margin_bottom(10);    
+  //   }
+  // }
   show_all_children();
 }
 
