@@ -132,8 +132,20 @@ MainWindow::MainWindow()
 }
 
 MainWindow::~MainWindow() {
-  //delete table
-  //delete vector of hand button
+  for(int i=0; i<m_Images.size(); i++){
+    delete m_Images[i];
+    m_Images[i] = nullptr;
+  }
+  m_Images.clear();
+
+  for(int i=0; i<hand_.size(); i++) {
+    delete hand_[i];
+    hand_[i] = nullptr;
+  }
+  hand_.clear();
+
+  delete table_;
+  table_ = nullptr;
 }
 
 void MainWindow::onButtonShuffle()
