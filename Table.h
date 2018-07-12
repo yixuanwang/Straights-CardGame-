@@ -60,6 +60,8 @@ public:
 // ensures: player(observers) will be notified to play()
   void notify();
 
+  bool isValid(int);
+
 // ctor
 // ensures: this->Deck_ is shuffled, seed is argv[1], this->convertPlayerId is initialized as -1, this->scores_ is initialized as {0,0,0,0}, this->players_ is intialized based on cin
 Table(MainWindow *, int argc = 1, char ** argv = nullptr);

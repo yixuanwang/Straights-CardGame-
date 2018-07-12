@@ -158,46 +158,6 @@ void MainWindow::onButtonRage()
   table->setTurnPlayer();
 }
 
-// void MainWindow::onButtonHand0(){
-//   table->playerPlay(playerTurn_, 0);
-// }
-// void MainWindow::onButtonHand1(){
-//   table->playerPlay(playerTurn_, 1);
-// }
-// void MainWindow::onButtonHand2(){
-//   table->playerPlay(playerTurn_, 2);
-// }
-// void MainWindow::onButtonHand3(){
-//   table->playerPlay(playerTurn_, 3);
-// }
-// void MainWindow::onButtonHand4(){
-//   table->playerPlay(playerTurn_, 4);
-// }
-// void MainWindow::onButtonHand5(){
-//   table->playerPlay(playerTurn_, 5);
-// }
-// void MainWindow::onButtonHand6(){
-//   table->playerPlay(playerTurn_, 6);
-// }
-// void MainWindow::onButtonHand7(){
-//   table->playerPlay(playerTurn_, 7);
-// }
-// void MainWindow::onButtonHand8(){
-//   table->playerPlay(playerTurn_, 8);
-// }
-// void MainWindow::onButtonHand9(){
-//   table->playerPlay(playerTurn_, 9);
-// }
-// void MainWindow::onButtonHand10(){
-//   table->playerPlay(playerTurn_, 10);
-// }
-// void MainWindow::onButtonHand11(){
-//   table->playerPlay(playerTurn_, 11);
-// }
-// void MainWindow::onButtonHand12(){
-//   table->playerPlay(playerTurn_, 12);
-// }
-
 void MainWindow::on_hand_clicked(int i){
   table->playerPlay(playerTurn_, i);
 }
@@ -212,6 +172,13 @@ void MainWindow::updateHand(vector<Card> playerHand, int turnPlayer_){
   for(int i=0; i<playerHand.size(); i++){
     ImageButton *temp = new ImageButton("img/"+playerHand[i].getString()+".png");
     hand_.push_back(temp);
+    cout << "seg";
+    if(table->isValid(i) == false){
+      cout << "ment";
+      // temp->set_sensitive(false);
+    }
+    cout << "ation";
+
     m_Hand.pack_start(*hand_[i]);
   }
   for(int i = playerHand.size(); i < 13; i++){
@@ -342,17 +309,18 @@ int suitToInt(Suit s){
 
 void MainWindow::updateImageGrid(vector<Card> playedCards_){
   int c = 0;
+  cout << "update init " << m_Images.size() << endl;
   if(m_Images.size() == 0){
     for(int i = 0; i < 52; i++){
       m_Images.push_back(new Gtk::Image("img/nothing.png"));
     }
   }
   for(int i = 0; i< playedCards_.size(); i++){
-    cout << c++ << endl;
+    // cout << c++ << endl;
     int x = rankToInts(playedCards_[i].getRank()) -1;
     int y = suitToInt(playedCards_[i].getSuit());
     string s = "img/"+playedCards_[i].getString()+".png";
-    cout << m_Images.size() << endl;
+    cout << "update image grid " << m_Images.size() << endl;
     delete m_Images[y*13+x];
     m_Images[y*13+x] = new Gtk::Image(s);
     m_Grid.attach(*m_Images[y*13+x],x,y,1,1);
@@ -361,6 +329,7 @@ void MainWindow::updateImageGrid(vector<Card> playedCards_){
     }
     m_Images[y*13+x]->set_margin_bottom(10);
   }
+  cout << "update after " << m_Images.size() << endl;
   // for(int i=0; i < 4; i++){
   //   for(int j=0; j<13; j++){
   //     m_Grid.attach(*m_Images[i*13+j],j,i,1,1);
@@ -399,11 +368,15 @@ void MainWindow::updateDiscard(int player, int discard, int score){
 
 void MainWindow::resetGrid() {
   cout << "m_Images size" << m_Images.size() << endl;
-  for(int i = 0; i < 52; i++){
+  for(int i = 0; i < m_Images.size(); i++){
     delete m_Images[i];
     m_Images[i] = nullptr;
-    m_Images.push_back(new Gtk::Image("img/nothing.png"));
+    
   }
+  m_Images.clear();
+  for(int i =0; i < 52; i++){
+      m_Images.push_back(new Gtk::Image("img/nothing.png"));
+    }
   for(int i=0; i < 4; i++){
     for(int j=0; j<13; j++){
       m_Grid.attach(*m_Images[i*13+j],j,i,1,1);

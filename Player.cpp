@@ -58,6 +58,29 @@ std::vector<Card> Player::getDiscard() {
   return discard_;
 }
 
+
+bool Player::isValid(int n) {
+  //get legal plays
+  vector<Card> legalPlay = getLegalPlay();
+  //if 1st player with 7spades
+  vector<Card> tableCard = table_->getPlayedCard();
+  if(tableCard.size() == 0){
+    for(int j=0; j<hand_.size(); j++) {
+      if(hand_[j].getRank() == SEVEN && hand_[j].getSuit() == SPADE){
+        legalPlay.push_back(hand_[j]);
+      }
+    }
+  }
+  cout << legalPlay.size() << endl;
+  cout << "n is " << n << endl;
+  cout << "hand size is " << hand_.size() << endl;
+  for(int i=0; i<legalPlay.size(); i++) {
+    if(hand_[n] == legalPlay[i]) {
+      return true;
+    }
+  }
+  return false;
+}
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////////  HumanPlayer  /////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
@@ -113,6 +136,27 @@ void HumanPlayer::play(int n) {
 bool HumanPlayer::isHuman(){
   return true;
 }
+
+// bool HumanPlayer::isValid(int n) {
+//   //get legal plays
+//   vector<Card> legalPlay = getLegalPlay();
+//   //if 1st player with 7spades
+//   vector<Card> tableCard = table_->getPlayedCard();
+//   if(tableCard.size() == 0){
+//     for(int j=0; j<hand_.size(); j++) {
+//       if(hand_[j].getRank() == SEVEN && hand_[j].getSuit() == SPADE){
+//         legalPlay.push_back(hand_[j]);
+//       }
+//     }
+//   }
+
+//   for(int i=0; i<legalPlay.size(); i++) {
+//     if(hand_[n] == legalPlay[i]) {
+//       return true;
+//     }
+//   }
+//   return false;
+// }
 ///////////////////////////////////////////////////////////////////////////
 /////////////////////////////  CPUPlayer  /////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////

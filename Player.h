@@ -56,6 +56,8 @@ public:
   void update(Card card);
 
   virtual void play(int) =0;
+
+  bool isValid(int);
 };
 
 class HumanPlayer : public Player
@@ -81,6 +83,10 @@ public:
   requires: hand_ is not empty
   */
   void play(int) override;
+
+  // bool isValid(int);
+
+
 
 };
 

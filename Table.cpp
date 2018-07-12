@@ -185,6 +185,7 @@ void Table::printTableState(){
 	cout << "test1" << endl;
 	mainWindow_->updateImageGrid(playedCards_);
 	cout << "test2" << endl;
+
 }
 
 // modifies: vector<player> players_
@@ -324,6 +325,11 @@ int Table::getTurnPlayer(){
 
 void Table::errorMessage(string e){
 	mainWindow_->errorMessage(e);
+}
+
+bool Table::isValid(int n){
+	cout << "turnPlayer_" << turnPlayer_<< endl;
+	return players_[turnPlayer_]->isValid(n);
 }
 
 void Table::playerPlay(int n, int card) {

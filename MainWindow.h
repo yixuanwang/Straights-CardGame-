@@ -26,19 +26,6 @@ protected:
   void on_hand_clicked(int);
   void onButtonQuit();
   void onButtonRage();
-  // void onButtonHand0();
-  // void onButtonHand1();
-  // void onButtonHand2();
-  // void onButtonHand3();
-  // void onButtonHand4();
-  // void onButtonHand5();
-  // void onButtonHand6();
-  // void onButtonHand7();
-  // void onButtonHand8();
-  // void onButtonHand9();
-  // void onButtonHand10();
-  // void onButtonHand11();
-  // void onButtonHand12();
 
 
   //Child widgets
