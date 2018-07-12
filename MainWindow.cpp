@@ -97,32 +97,36 @@ MainWindow::MainWindow()
   m_ButtonRage.signal_clicked().connect(sigc::mem_fun(*this,
               &MainWindow::onButtonRage) );
 
-  hand_[0]->signal_clicked().connect(sigc::mem_fun(*this,
-              &MainWindow::onButtonHand0) );
-  hand_[1]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand1) );
-  hand_[2]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand2) );
-  hand_[3]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand3) );
-  hand_[4]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand4) );
-  hand_[5]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand5) );
-  hand_[6]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand6) );
-  hand_[7]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand7) );
-  hand_[8]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand8) );
-  hand_[9]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand9) );
-  hand_[10]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand10) );
-  hand_[11]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand11) );
-  hand_[12]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand12) );
+  for(int i = 0; i < hand_.size();i++){
+    hand_[i]->signal_clicked().connect(sigc::bind<int>(
+    sigc::mem_fun(*this,&MainWindow::on_hand_clicked), i));
+  }
+  // hand_[0]->signal_clicked().connect(sigc::mem_fun(*this,
+  //             &MainWindow::onButtonHand0) );
+  // hand_[1]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand1) );
+  // hand_[2]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand2) );
+  // hand_[3]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand3) );
+  // hand_[4]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand4) );
+  // hand_[5]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand5) );
+  // hand_[6]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand6) );
+  // hand_[7]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand7) );
+  // hand_[8]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand8) );
+  // hand_[9]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand9) );
+  // hand_[10]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand10) );
+  // hand_[11]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand11) );
+  // hand_[12]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand12) );
 
   show_all_children();
 }
@@ -154,44 +158,48 @@ void MainWindow::onButtonRage()
   table->setTurnPlayer();
 }
 
-void MainWindow::onButtonHand0(){
-  table->playerPlay(playerTurn_, 0);
-}
-void MainWindow::onButtonHand1(){
-  table->playerPlay(playerTurn_, 1);
-}
-void MainWindow::onButtonHand2(){
-  table->playerPlay(playerTurn_, 2);
-}
-void MainWindow::onButtonHand3(){
-  table->playerPlay(playerTurn_, 3);
-}
-void MainWindow::onButtonHand4(){
-  table->playerPlay(playerTurn_, 4);
-}
-void MainWindow::onButtonHand5(){
-  table->playerPlay(playerTurn_, 5);
-}
-void MainWindow::onButtonHand6(){
-  table->playerPlay(playerTurn_, 6);
-}
-void MainWindow::onButtonHand7(){
-  table->playerPlay(playerTurn_, 7);
-}
-void MainWindow::onButtonHand8(){
-  table->playerPlay(playerTurn_, 8);
-}
-void MainWindow::onButtonHand9(){
-  table->playerPlay(playerTurn_, 9);
-}
-void MainWindow::onButtonHand10(){
-  table->playerPlay(playerTurn_, 10);
-}
-void MainWindow::onButtonHand11(){
-  table->playerPlay(playerTurn_, 11);
-}
-void MainWindow::onButtonHand12(){
-  table->playerPlay(playerTurn_, 12);
+// void MainWindow::onButtonHand0(){
+//   table->playerPlay(playerTurn_, 0);
+// }
+// void MainWindow::onButtonHand1(){
+//   table->playerPlay(playerTurn_, 1);
+// }
+// void MainWindow::onButtonHand2(){
+//   table->playerPlay(playerTurn_, 2);
+// }
+// void MainWindow::onButtonHand3(){
+//   table->playerPlay(playerTurn_, 3);
+// }
+// void MainWindow::onButtonHand4(){
+//   table->playerPlay(playerTurn_, 4);
+// }
+// void MainWindow::onButtonHand5(){
+//   table->playerPlay(playerTurn_, 5);
+// }
+// void MainWindow::onButtonHand6(){
+//   table->playerPlay(playerTurn_, 6);
+// }
+// void MainWindow::onButtonHand7(){
+//   table->playerPlay(playerTurn_, 7);
+// }
+// void MainWindow::onButtonHand8(){
+//   table->playerPlay(playerTurn_, 8);
+// }
+// void MainWindow::onButtonHand9(){
+//   table->playerPlay(playerTurn_, 9);
+// }
+// void MainWindow::onButtonHand10(){
+//   table->playerPlay(playerTurn_, 10);
+// }
+// void MainWindow::onButtonHand11(){
+//   table->playerPlay(playerTurn_, 11);
+// }
+// void MainWindow::onButtonHand12(){
+//   table->playerPlay(playerTurn_, 12);
+// }
+
+void MainWindow::on_hand_clicked(int i){
+  table->playerPlay(playerTurn_, i);
 }
 
 void MainWindow::updateHand(vector<Card> playerHand, int turnPlayer_){
@@ -213,32 +221,36 @@ void MainWindow::updateHand(vector<Card> playerHand, int turnPlayer_){
   }
   m_Hand.set_layout(Gtk::BUTTONBOX_START);
 
-  hand_[0]->signal_clicked().connect(sigc::mem_fun(*this,
-              &MainWindow::onButtonHand0) );
-  hand_[1]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand1) );
-  hand_[2]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand2) );
-  hand_[3]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand3) );
-  hand_[4]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand4) );
-  hand_[5]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand5) );
-  hand_[6]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand6) );
-  hand_[7]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand7) );
-  hand_[8]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand8) );
-  hand_[9]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand9) );
-  hand_[10]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand10) );
-  hand_[11]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand11) );
-  hand_[12]->signal_clicked().connect(sigc::mem_fun(*this,
-                &MainWindow::onButtonHand12) );
+  for(int i = 0; i < hand_.size();i++){
+    hand_[i]->signal_clicked().connect(sigc::bind<int>(
+    sigc::mem_fun(*this,&MainWindow::on_hand_clicked), i));
+  }
+  // hand_[0]->signal_clicked().connect(sigc::mem_fun(*this,
+  //             &MainWindow::onButtonHand0) );
+  // hand_[1]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand1) );
+  // hand_[2]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand2) );
+  // hand_[3]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand3) );
+  // hand_[4]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand4) );
+  // hand_[5]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand5) );
+  // hand_[6]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand6) );
+  // hand_[7]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand7) );
+  // hand_[8]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand8) );
+  // hand_[9]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand9) );
+  // hand_[10]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand10) );
+  // hand_[11]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand11) );
+  // hand_[12]->signal_clicked().connect(sigc::mem_fun(*this,
+  //               &MainWindow::onButtonHand12) );
 
   show_all_children();
 }
