@@ -1,0 +1,3 @@
+Bonus Features
+1.Visual cues to which card are legal plays => the non legal plays will have a disabled button, so the player can only choose to click on the legal plays buttons.
+2.Smarter computer player: When discarding, the computer will discard the smallest valued card and when playing, the computer will choose the biggest valued card legal play.
