@@ -109,7 +109,6 @@ void HumanPlayer::play(int n) {
     }
   }
   bool endturn = false;
-  // while(!endturn) {
   if(legalPlay.size() != 0){
     for(int i=0; i<legalPlay.size(); i++) {
       if(hand_[n] == legalPlay[i]) {
@@ -140,26 +139,6 @@ bool HumanPlayer::isHuman(){
   return true;
 }
 
-// bool HumanPlayer::isValid(int n) {
-//   //get legal plays
-//   vector<Card> legalPlay = getLegalPlay();
-//   //if 1st player with 7spades
-//   vector<Card> tableCard = table_->getPlayedCard();
-//   if(tableCard.size() == 0){
-//     for(int j=0; j<hand_.size(); j++) {
-//       if(hand_[j].getRank() == SEVEN && hand_[j].getSuit() == SPADE){
-//         legalPlay.push_back(hand_[j]);
-//       }
-//     }
-//   }
-
-//   for(int i=0; i<legalPlay.size(); i++) {
-//     if(hand_[n] == legalPlay[i]) {
-//       return true;
-//     }
-//   }
-//   return false;
-// }
 ///////////////////////////////////////////////////////////////////////////
 /////////////////////////////  CPUPlayer  /////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
