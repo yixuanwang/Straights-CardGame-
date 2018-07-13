@@ -4,7 +4,7 @@ using namespace std;
 
 MainWindow::MainWindow()
 : m_Box(Gtk::ORIENTATION_VERTICAL),
-  m_ButtonShuffle("Shuffle"),
+  m_ButtonShuffle("Start new game with seed:"),
   m_ButtonQuit("Quit"),
   m_ButtonRage("Rage!"),
   m_FrameHand("Your Hand"),
@@ -15,6 +15,7 @@ MainWindow::MainWindow()
   m_FrameTurn("Player x's turn"),
   m_FrameTable("Cards on the table")
 {
+  reset = false;
   table = new Table(this);
   for(int i = 0; i < 52; i++){
     m_Images.push_back(new Gtk::Image("img/nothing.png"));
@@ -23,8 +24,8 @@ MainWindow::MainWindow()
   add(m_Box);
 
   //Set Sizes
-  m_ButtonShuffle.set_size_request(340, 32);
-  m_ButtonQuit.set_size_request(340, 32);
+  m_ButtonShuffle.set_size_request(361, 32);
+  m_ButtonQuit.set_size_request(360, 32);
   m_EntrySeed.set_size_request(35, 32);
 
 
@@ -56,26 +57,26 @@ MainWindow::MainWindow()
 
   //Players section
   m_Box.pack_start(m_PlayerGrid, Gtk::PACK_EXPAND_WIDGET);
-  m_Frame1.set_size_request(300,50);
+  m_Frame1.set_size_request(277,50);
   m_PlayerGrid.attach(m_Frame1,0,0,10,1);
   // m_Box.pack_start(m_Frame1, Gtk::PACK_SHRINK);
   m_Point1.set_label("0 points\n0 discards");
   m_Frame1.add(m_Point1);
 
   m_PlayerGrid.attach(m_Frame2,12,0,1,1);
-  m_Frame2.set_size_request(300,50);
+  m_Frame2.set_size_request(277,50);
   // m_Box.pack_start(m_Frame2, Gtk::PACK_SHRINK);
   m_Point2.set_label("0 points\n0 discards");
   m_Frame2.add(m_Point2);
 
   m_PlayerGrid.attach(m_Frame3,13,0,1,1);
-  m_Frame3.set_size_request(300,50);
+  m_Frame3.set_size_request(277,50);
   // m_Box.pack_start(m_Frame3, Gtk::PACK_SHRINK);
   m_Point3.set_label("0 points\n0 discards");
   m_Frame3.add(m_Point3);
 
   m_PlayerGrid.attach(m_Frame4,14,0,1,1);
-  m_Frame4.set_size_request(300,50);
+  m_Frame4.set_size_request(277,50);
   // m_Box.pack_start(m_Frame4, Gtk::PACK_SHRINK);
   m_Point4.set_label("0 points\n0 discards");
   m_Frame4.add(m_Point4);
@@ -152,11 +153,13 @@ void MainWindow::onButtonShuffle()
 {
   // cout << "clicked or not? ";
   // cout << m_ButtonShuffle.clicked;
+  reset = true;
   string seed = m_EntrySeed.get_text();
   stringstream geek(seed);
   int x = 0;
   geek >> x;
-  table->setSeed(x);
+  delete table;
+  table = new Table(this, x);
 }
 
 void MainWindow::onButtonQuit()
@@ -175,6 +178,10 @@ void MainWindow::on_hand_clicked(int i){
 }
 
 void MainWindow::updateHand(vector<Card> playerHand, int turnPlayer_, vector<bool> valid){
+  if(reset){
+    resetGrid();
+    reset = false;
+  }
   playerTurn_ = turnPlayer_;
   m_FrameTurn.set_label("Player "+ to_string(turnPlayer_+1) +"'s turn");
   for(int i=0; i<hand_.size(); i++){

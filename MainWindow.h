@@ -9,6 +9,7 @@
 class Table;
 
 class MainWindow : public Gtk::Window {
+  bool reset;
 public:
   MainWindow();
   virtual ~MainWindow();

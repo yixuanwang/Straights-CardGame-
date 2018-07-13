@@ -41,12 +41,7 @@ void Table::setSeed(int i){
 // ctor
 // requires: argc is at least 2, argv[1] exists
 // ensures: Deck_ is shuffled, seed is argv[1], convertPlayerId is initialized as -1, score is initialized as {0,0,0,0}, players_ is intialized based on cin
-Table::Table(MainWindow * m, int argc, char **argv):Deck_{initDeck()}, convertPlayerId{-1}, mainWindow_{m}{
-	if(argc != 1){
-		seed = strtol(argv[1], NULL, 10);
-	}else{
-		seed = 0;
-	}
+Table::Table(MainWindow * m, int s):Deck_{initDeck()}, convertPlayerId{-1}, mainWindow_{m}, seed{s}{
 	vector<Card> v;
 	playedCards_ = v;
 	vector<int> score = {0,0,0,0};
