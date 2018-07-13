@@ -104,6 +104,7 @@ void Table::notify(){
 		mainWindow_->updateHand(players_[turnPlayer_]->getHand(), turnPlayer_, valid);
 	}else{//if cmoputer player
 		players_[turnPlayer_]->play(0);
+		mainWindow_->updateImageGrid(playedCards_);
 	}
 }
 
