@@ -60,6 +60,9 @@ std::vector<Card> Player::getDiscard() {
 
 
 bool Player::isValid(int n) {
+  if(n>=hand_.size()) {
+    return false;
+  }
   //get legal plays
   vector<Card> legalPlay = getLegalPlay();
   //if 1st player with 7spades
@@ -71,9 +74,9 @@ bool Player::isValid(int n) {
       }
     }
   }
-  cout << legalPlay.size() << endl;
-  cout << "n is " << n << endl;
-  cout << "hand size is " << hand_.size() << endl;
+  if(legalPlay.size() == 0){
+    return true;
+  }
   for(int i=0; i<legalPlay.size(); i++) {
     if(hand_[n] == legalPlay[i]) {
       return true;

@@ -144,8 +144,8 @@ MainWindow::~MainWindow() {
   }
   hand_.clear();
 
-  delete table_;
-  table_ = nullptr;
+  delete table;
+  table = nullptr;
 }
 
 void MainWindow::onButtonShuffle()
@@ -174,7 +174,7 @@ void MainWindow::on_hand_clicked(int i){
   table->playerPlay(playerTurn_, i);
 }
 
-void MainWindow::updateHand(vector<Card> playerHand, int turnPlayer_){
+void MainWindow::updateHand(vector<Card> playerHand, int turnPlayer_, vector<bool> valid){
   playerTurn_ = turnPlayer_;
   m_FrameTurn.set_label("Player "+ to_string(turnPlayer_+1) +"'s turn");
   for(int i=0; i<hand_.size(); i++){
@@ -184,12 +184,12 @@ void MainWindow::updateHand(vector<Card> playerHand, int turnPlayer_){
   for(int i=0; i<playerHand.size(); i++){
     ImageButton *temp = new ImageButton("img/"+playerHand[i].getString()+".png");
     hand_.push_back(temp);
-    cout << "seg";
-    if(table->isValid(i) == false){
-      cout << "ment";
-      // temp->set_sensitive(false);
+    // cout << "seg";
+    if(!valid[i]){
+      //cout << "ment";
+      temp->set_sensitive(false);
     }
-    cout << "ation";
+    // cout << "ation";
 
     m_Hand.pack_start(*hand_[i]);
   }
@@ -383,7 +383,7 @@ void MainWindow::resetGrid() {
   for(int i = 0; i < m_Images.size(); i++){
     delete m_Images[i];
     m_Images[i] = nullptr;
-    
+
   }
   m_Images.clear();
   for(int i =0; i < 52; i++){

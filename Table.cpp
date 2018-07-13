@@ -100,8 +100,12 @@ void Table::notify(){
 	}
 	//if human player
 	if(players_[turnPlayer_]->isHuman()){
+		vector<bool> valid;
+		for(int i=0; i<13; i++) {
+			valid.push_back(players_[turnPlayer_]->isValid(i));
+		}
 		printTableState();
-		mainWindow_->updateHand(players_[turnPlayer_]->getHand(), turnPlayer_);
+		mainWindow_->updateHand(players_[turnPlayer_]->getHand(), turnPlayer_, valid);
 	}else{//if cmoputer player
 		players_[turnPlayer_]->play(0);
 	}
@@ -182,10 +186,7 @@ void Table::printRanksOfSuit(Suit s){
 
 // ensures: print the table state
 void Table::printTableState(){
-	cout << "test1" << endl;
 	mainWindow_->updateImageGrid(playedCards_);
-	cout << "test2" << endl;
-
 }
 
 // modifies: vector<player> players_
@@ -255,8 +256,12 @@ void Table::printScore(){
 // ensures: a new round begin or the game ends
 // modifies: Deck_ and players_ and playedCards_
 bool Table::resetGame() {
+	vector<bool> valid;
+	for(int i=0; i<13; i++) {
+		valid.push_back(players_[turnPlayer_]->isValid(i));
+	}
 	printTableState();
-	mainWindow_->updateHand(players_[turnPlayer_]->getHand(), turnPlayer_);
+	mainWindow_->updateHand(players_[turnPlayer_]->getHand(), turnPlayer_, valid);
 	for(int i=0; i<4; i++) {
 		mainWindow_->updateDiscard(i, players_[i]->getDiscard().size(), scores_[i]);
 	}
@@ -327,10 +332,15 @@ void Table::errorMessage(string e){
 	mainWindow_->errorMessage(e);
 }
 
-bool Table::isValid(int n){
-	cout << "turnPlayer_" << turnPlayer_<< endl;
-	return players_[turnPlayer_]->isValid(n);
-}
+// bool Table::isValid(int player, int n){
+// 	cout << player << "player, " << n << "n" << endl;
+// 	cout << players_.size() << endl;
+// 	vector<Card> temp = players_[player]->getHand();
+// 	cout << temp.size() << endl;
+// 	cout <<temp[n].getString();
+// 	//bool tempb = players_[player]->isValid(n);
+// 	return false;
+// }
 
 void Table::playerPlay(int n, int card) {
 	players_[n]->play(card);

@@ -52,7 +52,7 @@ protected:
   std::vector<ImageButton*> hand_;
 
   public:
-    void updateHand(std::vector<Card>, int);
+    void updateHand(std::vector<Card>, int, std::vector<bool>);
     void updateImageGrid(std::vector<Card>);
     void updatePlayer(int, int, int);
     void printMessage(std::string);

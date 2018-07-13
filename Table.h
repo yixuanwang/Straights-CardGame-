@@ -51,8 +51,13 @@ class Table
 // ensures: if should begin new round, cout
   bool beginRound(); // check 7 spade and set turn
 public:
-
+  /*
+  ensures: updateDiscard of the mainWindow is called
+  */
   void updateDiscard(int);
+  /*
+  ensures: specific player's play function is called
+  */
   void playerPlay(int, int);
 // // return this->playedCards_
   std::vector<Card> getPlayedCard();
@@ -60,7 +65,7 @@ public:
 // ensures: player(observers) will be notified to play()
   void notify();
 
-  bool isValid(int);
+  // bool isValid(int, int);
 
 // ctor
 // ensures: this->Deck_ is shuffled, seed is argv[1], this->convertPlayerId is initialized as -1, this->scores_ is initialized as {0,0,0,0}, this->players_ is intialized based on cin
@@ -96,11 +101,14 @@ Table(MainWindow *, int argc = 1, char ** argv = nullptr);
 // ensures: print the table state
   void printTableState();
 
-
+// ensures a new seed is set for shuffling cards
+// modifies: seed
   void setSeed(int);
 
+// returns: turnPlayer_'s value
   int getTurnPlayer();
 
+// ensures: mainwindow's errormessage function is called
   void errorMessage(std::string);
 
 };

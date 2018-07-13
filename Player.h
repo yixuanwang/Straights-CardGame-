@@ -22,6 +22,9 @@ protected:
   */
   std::vector<Card> getLegalPlay();
 public:
+  /*
+  returns: a bool that indicate which kind of player it is
+  */
   virtual bool isHuman() =0;
   /*
   Constructor
@@ -56,7 +59,9 @@ public:
   void update(Card card);
 
   virtual void play(int) =0;
-
+  /*
+  returns: returns if a specific card in player hand is a legal play
+  */
   bool isValid(int);
 };
 
