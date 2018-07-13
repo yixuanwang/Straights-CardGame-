@@ -158,6 +158,9 @@ void MainWindow::onButtonShuffle()
   geek >> x;
   delete table;
   table = new Table(this, x);
+  for(int i=0; i<4; i++){
+    updateDiscard(i,0,0);
+  }
 }
 
 void MainWindow::onButtonQuit()
