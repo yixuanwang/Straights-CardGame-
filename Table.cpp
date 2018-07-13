@@ -60,6 +60,8 @@ Table::Table(MainWindow * m, int s):Deck_{initDeck()}, convertPlayerId{-1}, main
 			assert(false);
 		}
 	}
+
+	int temp = searchFor7spade();
 	notify();
 }
 
