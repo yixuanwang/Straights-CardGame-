@@ -9,6 +9,17 @@
 class Table;
 
 class MainWindow : public Gtk::Window {
+<<<<<<< HEAD
+=======
+  bool reset;
+public:
+  MainWindow();
+  virtual ~MainWindow();
+  std::string humanCpu(int i);
+  void errorMessage(std::string);
+  void updateDiscard(int, int, int);
+  void resetGrid();
+>>>>>>> 13b2443cc31c584e1bf75c0c37ee7c902175e0e3
 protected:
   Table *table;
   int playerTurn_;

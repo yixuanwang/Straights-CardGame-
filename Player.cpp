@@ -215,7 +215,6 @@ void CpuPlayer::play(int n)
     }
   }
   if(legalPlay.size() == 0) {
-    //cout << "Player " << playerID_+1 << " discards " << hand_[0] << "." << endl;
     int min = 0;
     int i = 0;
     int j = 1;
@@ -226,13 +225,6 @@ void CpuPlayer::play(int n)
       }
       j++;
     }
-    // for(int i = 0; i < hand_.size()-1; i++){
-    //   for(int j = i+1; j < hand_.size(); j++){
-    //     if(rank_to_int(hand_[i].getRank()) > rank_to_int(hand_[j].getRank())){
-    //       min = j;          
-    //     }
-    //   }
-    // }
     discard_.push_back(hand_[min]);
     hand_.erase(hand_.begin()+min);
     table_->updateDiscard(discard_.size());
@@ -247,7 +239,6 @@ void CpuPlayer::play(int n)
       }
       j++;
     }
-    //cout << "Player " << playerID_+1 << " plays " << legalPlay[0] << "." << endl;
     update(legalPlay[max]);
     //delete card from hand_
     for(j=0; j<hand_.size(); j++) {

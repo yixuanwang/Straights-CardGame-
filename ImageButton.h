@@ -10,7 +10,14 @@ protected:
     Gtk::Image * image;
     Gtk::HBox * box;
 public:
+  /*
+  ensures: initialization of this
+  */
     ImageButton(const std::string& xpm_filename);
+  /*
+  modifies: stack
+  ensures: memory is freed and this is deleted
+  */
     virtual ~ImageButton();
 };
 

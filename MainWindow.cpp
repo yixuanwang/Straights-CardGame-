@@ -4,7 +4,7 @@ using namespace std;
 
 MainWindow::MainWindow()
 : m_Box(Gtk::ORIENTATION_VERTICAL),
-  m_ButtonShuffle("Shuffle"),
+  m_ButtonShuffle("Start new game with seed:"),
   m_ButtonQuit("Quit"),
   m_ButtonRage("Rage!"),
   m_FrameHand("Your Hand"),
@@ -15,6 +15,7 @@ MainWindow::MainWindow()
   m_FrameTurn("Player x's turn"),
   m_FrameTable("Cards on the table")
 {
+  reset = false;
   table = new Table(this);
   for(int i = 0; i < 52; i++){
     m_Images.push_back(new Gtk::Image("img/nothing.png"));
@@ -23,8 +24,8 @@ MainWindow::MainWindow()
   add(m_Box);
 
   //Set Sizes
-  m_ButtonShuffle.set_size_request(340, 32);
-  m_ButtonQuit.set_size_request(340, 32);
+  m_ButtonShuffle.set_size_request(361, 32);
+  m_ButtonQuit.set_size_request(360, 32);
   m_EntrySeed.set_size_request(35, 32);
 
 
@@ -56,26 +57,26 @@ MainWindow::MainWindow()
 
   //Players section
   m_Box.pack_start(m_PlayerGrid, Gtk::PACK_EXPAND_WIDGET);
-  m_Frame1.set_size_request(300,50);
+  m_Frame1.set_size_request(277,50);
   m_PlayerGrid.attach(m_Frame1,0,0,10,1);
   // m_Box.pack_start(m_Frame1, Gtk::PACK_SHRINK);
   m_Point1.set_label("0 points\n0 discards");
   m_Frame1.add(m_Point1);
 
   m_PlayerGrid.attach(m_Frame2,12,0,1,1);
-  m_Frame2.set_size_request(300,50);
+  m_Frame2.set_size_request(277,50);
   // m_Box.pack_start(m_Frame2, Gtk::PACK_SHRINK);
   m_Point2.set_label("0 points\n0 discards");
   m_Frame2.add(m_Point2);
 
   m_PlayerGrid.attach(m_Frame3,13,0,1,1);
-  m_Frame3.set_size_request(300,50);
+  m_Frame3.set_size_request(277,50);
   // m_Box.pack_start(m_Frame3, Gtk::PACK_SHRINK);
   m_Point3.set_label("0 points\n0 discards");
   m_Frame3.add(m_Point3);
 
   m_PlayerGrid.attach(m_Frame4,14,0,1,1);
-  m_Frame4.set_size_request(300,50);
+  m_Frame4.set_size_request(277,50);
   // m_Box.pack_start(m_Frame4, Gtk::PACK_SHRINK);
   m_Point4.set_label("0 points\n0 discards");
   m_Frame4.add(m_Point4);
@@ -150,11 +151,13 @@ MainWindow::~MainWindow() {
 
 void MainWindow::onButtonShuffle()
 {
+  reset = true;
   string seed = m_EntrySeed.get_text();
   stringstream geek(seed);
   int x = 0;
   geek >> x;
-  table->setSeed(x);
+  delete table;
+  table = new Table(this, x);
 }
 
 void MainWindow::onButtonQuit()
@@ -173,6 +176,10 @@ void MainWindow::on_hand_clicked(int i){
 }
 
 void MainWindow::updateHand(vector<Card> playerHand, int turnPlayer_, vector<bool> valid){
+  if(reset){
+    resetGrid();
+    reset = false;
+  }
   playerTurn_ = turnPlayer_;
   m_FrameTurn.set_label("Player "+ to_string(turnPlayer_+1) +"'s turn");
   for(int i=0; i<hand_.size(); i++){
@@ -202,32 +209,6 @@ void MainWindow::updateHand(vector<Card> playerHand, int turnPlayer_, vector<boo
     hand_[i]->signal_clicked().connect(sigc::bind<int>(
     sigc::mem_fun(*this,&MainWindow::on_hand_clicked), i));
   }
-  // hand_[0]->signal_clicked().connect(sigc::mem_fun(*this,
-  //             &MainWindow::onButtonHand0) );
-  // hand_[1]->signal_clicked().connect(sigc::mem_fun(*this,
-  //               &MainWindow::onButtonHand1) );
-  // hand_[2]->signal_clicked().connect(sigc::mem_fun(*this,
-  //               &MainWindow::onButtonHand2) );
-  // hand_[3]->signal_clicked().connect(sigc::mem_fun(*this,
-  //               &MainWindow::onButtonHand3) );
-  // hand_[4]->signal_clicked().connect(sigc::mem_fun(*this,
-  //               &MainWindow::onButtonHand4) );
-  // hand_[5]->signal_clicked().connect(sigc::mem_fun(*this,
-  //               &MainWindow::onButtonHand5) );
-  // hand_[6]->signal_clicked().connect(sigc::mem_fun(*this,
-  //               &MainWindow::onButtonHand6) );
-  // hand_[7]->signal_clicked().connect(sigc::mem_fun(*this,
-  //               &MainWindow::onButtonHand7) );
-  // hand_[8]->signal_clicked().connect(sigc::mem_fun(*this,
-  //               &MainWindow::onButtonHand8) );
-  // hand_[9]->signal_clicked().connect(sigc::mem_fun(*this,
-  //               &MainWindow::onButtonHand9) );
-  // hand_[10]->signal_clicked().connect(sigc::mem_fun(*this,
-  //               &MainWindow::onButtonHand10) );
-  // hand_[11]->signal_clicked().connect(sigc::mem_fun(*this,
-  //               &MainWindow::onButtonHand11) );
-  // hand_[12]->signal_clicked().connect(sigc::mem_fun(*this,
-  //               &MainWindow::onButtonHand12) );
 
   show_all_children();
 }
@@ -312,18 +293,15 @@ int suitToInt(Suit s){
 
 void MainWindow::updateImageGrid(vector<Card> playedCards_){
   int c = 0;
-  cout << "update init " << m_Images.size() << endl;
   if(m_Images.size() == 0){
     for(int i = 0; i < 52; i++){
       m_Images.push_back(new Gtk::Image("img/nothing.png"));
     }
   }
   for(int i = 0; i< playedCards_.size(); i++){
-    // cout << c++ << endl;
     int x = rankToInts(playedCards_[i].getRank()) -1;
     int y = suitToInt(playedCards_[i].getSuit());
     string s = "img/"+playedCards_[i].getString()+".png";
-    cout << "update image grid " << m_Images.size() << endl;
     delete m_Images[y*13+x];
     m_Images[y*13+x] = new Gtk::Image(s);
     m_Grid.attach(*m_Images[y*13+x],x,y,1,1);
@@ -332,16 +310,6 @@ void MainWindow::updateImageGrid(vector<Card> playedCards_){
     }
     m_Images[y*13+x]->set_margin_bottom(10);
   }
-  cout << "update after " << m_Images.size() << endl;
-  // for(int i=0; i < 4; i++){
-  //   for(int j=0; j<13; j++){
-  //     m_Grid.attach(*m_Images[i*13+j],j,i,1,1);
-  //     if(j!=12){
-  //       m_Images[i*13+j]->set_margin_right(40);
-  //     }
-  //     m_Images[i*13+j]->set_margin_bottom(10);
-  //   }
-  // }
   show_all_children();
 }
 
@@ -370,7 +338,6 @@ void MainWindow::updateDiscard(int player, int discard, int score){
 }
 
 void MainWindow::resetGrid() {
-  cout << "m_Images size" << m_Images.size() << endl;
   for(int i = 0; i < m_Images.size(); i++){
     delete m_Images[i];
     m_Images[i] = nullptr;

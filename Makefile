@@ -4,7 +4,7 @@ GTKFLAGS = `pkg-config gtkmm-3.0 --cflags --libs`
 SOURCES = $(wildcard *.cpp) # list of all .cpp files in the current directory
 OBJECTS = ${SOURCES:.cpp=.o} # .o files depend upon .cpp files with same names
 DEPENDS = ${OBJECTS:.o=.d}  # .d file is list of dependencies for corresponding .cpp file
-EXEC=test
+EXEC=straights
 
 # First target in the makefile is the default target.
 # Note that the GTKFLAGS must come last in the command

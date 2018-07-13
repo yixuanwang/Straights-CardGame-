@@ -41,12 +41,7 @@ void Table::setSeed(int i){
 // ctor
 // requires: argc is at least 2, argv[1] exists
 // ensures: Deck_ is shuffled, seed is argv[1], convertPlayerId is initialized as -1, score is initialized as {0,0,0,0}, players_ is intialized based on cin
-Table::Table(MainWindow * m, int argc, char **argv):Deck_{initDeck()}, convertPlayerId{-1}, mainWindow_{m}{
-	if(argc != 1){
-		seed = strtol(argv[1], NULL, 10);
-	}else{
-		seed = 0;
-	}
+Table::Table(MainWindow * m, int s):Deck_{initDeck()}, convertPlayerId{-1}, mainWindow_{m}, seed{s}{
 	vector<Card> v;
 	playedCards_ = v;
 	vector<int> score = {0,0,0,0};
@@ -65,7 +60,6 @@ Table::Table(MainWindow * m, int argc, char **argv):Deck_{initDeck()}, convertPl
 			assert(false);
 		}
 	}
-	cout << "A new round begins. It's player " << searchFor7spade()+1 << "'s turn to play." << endl;
 	notify();
 }
 
@@ -179,9 +173,6 @@ void Table::printRanksOfSuit(Suit s){
 		}
 	}
 	sort(played_rank.begin(),played_rank.end());
-	for(int i = 0; i <played_rank.size(); i++){
-		cout << " " << intToRankName(played_rank[i]);
-	}
 }
 
 // ensures: print the table state
@@ -313,7 +304,6 @@ int Table::searchFor7spade(){
 // ensures: if should begin new round, cout
 bool Table::beginRound(){
 	if(resetGame() == true){
-		cout << "A new round begins. It's player " << searchFor7spade()+1 << "'s turn to play." << endl;
 		turnPlayer_ = searchFor7spade();
 		return true;
 	} else {
@@ -323,24 +313,12 @@ bool Table::beginRound(){
 
 
 int Table::getTurnPlayer(){
-	cout << "in table";
-	cout << turnPlayer_<<endl;
 	return turnPlayer_;
 }
 
 void Table::errorMessage(string e){
 	mainWindow_->errorMessage(e);
 }
-
-// bool Table::isValid(int player, int n){
-// 	cout << player << "player, " << n << "n" << endl;
-// 	cout << players_.size() << endl;
-// 	vector<Card> temp = players_[player]->getHand();
-// 	cout << temp.size() << endl;
-// 	cout <<temp[n].getString();
-// 	//bool tempb = players_[player]->isValid(n);
-// 	return false;
-// }
 
 void Table::playerPlay(int n, int card) {
 	players_[n]->play(card);
