@@ -160,7 +160,36 @@ bool HumanPlayer::isHuman(){
 ///////////////////////////////////////////////////////////////////////////
 /////////////////////////////  CPUPlayer  /////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
-
+int rank_to_int(Rank r){
+  switch(r){
+    case ACE:
+      return 1;
+    case TWO:
+      return 2;
+    case THREE:
+      return 3;
+    case FOUR:
+      return 4;
+    case FIVE:
+      return 5;
+    case SIX:
+      return 6;
+    case SEVEN:
+      return 7;
+    case EIGHT:
+      return 8;
+    case NINE:
+      return 9;
+    case TEN:
+      return 10;
+    case JACK:
+      return 11;
+    case QUEEN:
+      return 12;
+    case KING:
+      return 13;
+  }
+}
 
 CpuPlayer::CpuPlayer(std::vector<Card> hand, std::vector<Card> discard, int ID, Table * table) : Player(hand, discard, ID, table)
 {
@@ -184,15 +213,42 @@ void CpuPlayer::play(int n)
   }
   if(legalPlay.size() == 0) {
     //cout << "Player " << playerID_+1 << " discards " << hand_[0] << "." << endl;
-    discard_.push_back(hand_[0]);
-    hand_.erase(hand_.begin());
+    int min = 0;
+    int i = 0;
+    int j = 1;
+    while(i < hand_.size() && j < hand_.size()){
+      if(rank_to_int(hand_[i].getRank()) > rank_to_int(hand_[j].getRank())){
+        min = j;
+        i = j;
+      }
+      j++;
+    }
+    // for(int i = 0; i < hand_.size()-1; i++){
+    //   for(int j = i+1; j < hand_.size(); j++){
+    //     if(rank_to_int(hand_[i].getRank()) > rank_to_int(hand_[j].getRank())){
+    //       min = j;          
+    //     }
+    //   }
+    // }
+    discard_.push_back(hand_[min]);
+    hand_.erase(hand_.begin()+min);
     table_->updateDiscard(discard_.size());
   } else {
+    int max = 0;
+    int i = 0;
+    int j = 1;
+    while(i < legalPlay.size() && j < legalPlay.size()){
+      if(rank_to_int(legalPlay[i].getRank()) < rank_to_int(legalPlay[j].getRank())){
+        max = j;
+        i = j;
+      }
+      j++;
+    }
     //cout << "Player " << playerID_+1 << " plays " << legalPlay[0] << "." << endl;
-    update(legalPlay[0]);
+    update(legalPlay[max]);
     //delete card from hand_
-    for(int j=0; j<hand_.size(); j++) {
-      if(legalPlay[0] == hand_[j]){
+    for(j=0; j<hand_.size(); j++) {
+      if(legalPlay[max] == hand_[j]){
         hand_.erase(hand_.begin() + j);
       }
     }

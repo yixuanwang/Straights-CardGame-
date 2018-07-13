@@ -144,8 +144,8 @@ MainWindow::~MainWindow() {
   }
   hand_.clear();
 
-  delete table_;
-  table_ = nullptr;
+  delete table;
+  table = nullptr;
 }
 
 void MainWindow::onButtonShuffle()
@@ -184,12 +184,12 @@ void MainWindow::updateHand(vector<Card> playerHand, int turnPlayer_){
   for(int i=0; i<playerHand.size(); i++){
     ImageButton *temp = new ImageButton("img/"+playerHand[i].getString()+".png");
     hand_.push_back(temp);
-    cout << "seg";
-    if(table->isValid(i) == false){
-      cout << "ment";
-      // temp->set_sensitive(false);
-    }
-    cout << "ation";
+    // cout << "seg";
+    // if(table->isValid(i) == false){
+    //   cout << "ment";
+    //   // temp->set_sensitive(false);
+    // }
+    // cout << "ation";
 
     m_Hand.pack_start(*hand_[i]);
   }
