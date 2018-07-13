@@ -73,7 +73,7 @@ Table(MainWindow *, int argc = 1, char ** argv = nullptr);
 
 // dtor
 //modifies: this->players_ and stack
-//  ensures: all players are destroyed, stack no longuer exist, memory is freed
+//  ensures: all players are destroyed, stack no longer exist, memory is freed
   virtual ~Table();
 
 // modifies: this->convertPlayerId

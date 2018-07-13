@@ -150,8 +150,6 @@ MainWindow::~MainWindow() {
 
 void MainWindow::onButtonShuffle()
 {
-  // cout << "clicked or not? ";
-  // cout << m_ButtonShuffle.clicked;
   string seed = m_EntrySeed.get_text();
   stringstream geek(seed);
   int x = 0;
@@ -234,10 +232,6 @@ void MainWindow::updateHand(vector<Card> playerHand, int turnPlayer_, vector<boo
   show_all_children();
 }
 
-void MainWindow::updatePlayer(int player, int discard, int score) {
-
-}
-
 string MainWindow::humanCpu(int i){
   Gtk::MessageDialog dialog(*this, "Human or Computer?",
           false /* use_markup */, Gtk::MESSAGE_QUESTION,
@@ -271,9 +265,6 @@ void MainWindow::errorMessage(string e){
   dialog.run();
 }
 
-// int MainWindow::getClickedCard(){
-//   return clickedCard_;
-// }
 
 int rankToInts(Rank r){
   switch(r){

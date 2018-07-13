@@ -9,24 +9,9 @@
 class Table;
 
 class MainWindow : public Gtk::Window {
-public:
-  MainWindow();
-  virtual ~MainWindow();
-  std::string humanCpu(int i);
-  void errorMessage(std::string);
-  void updateDiscard(int, int, int);
-  void resetGrid();
 protected:
   Table *table;
   int playerTurn_;
-  // int clickedCard_;
-  //Signal handlers
-  void onButtonShuffle();
-
-  void on_hand_clicked(int);
-  void onButtonQuit();
-  void onButtonRage();
-
 
   //Child widgets
   Gtk::Box m_Box;
@@ -51,13 +36,57 @@ protected:
   //Playerhand
   std::vector<ImageButton*> hand_;
 
-  public:
-    void updateHand(std::vector<Card>, int, std::vector<bool>);
-    void updateImageGrid(std::vector<Card>);
-    void updatePlayer(int, int, int);
-    void printMessage(std::string);
+  //Signal handlers
 
-    // int getClickedCard();
+  //ensures: updating seed
+  void onButtonShuffle();
+
+  //ensures: handle 13 image buttons
+  void on_hand_clicked(int);
+
+  //ensures: handle the quite button
+  void onButtonQuit();
+  
+  //ensure: handle the Rage button
+  void onButtonRage();
+
+
+  public:
+  // ctor
+  // ensures: all widgets are initialized, and contruct a table class
+  MainWindow();
+
+  //dtor
+  //modifies: this->m_Images, this-<hands_, this->table, and stack
+  //ensures: all images and hands and table are destroyed, stack no longer exist, memory is freed
+  virtual ~MainWindow();
+
+  // ensures: based on the user reply in the dialogue, get the corresponding player type(human or cpu)
+  // return: the corresponding string to symbolize the player type
+  std::string humanCpu(int i);
+
+  // ensures: pop out the message to notify the user has played an illegal card
+  void errorMessage(std::string);
+
+  // ensures: update the showing discard number after a certain player discard a card
+  // modifies: this-discard
+  void updateDiscard(int, int, int);
+
+  // ensures: reset the Grid to the initial state
+  // modifies: this->grid
+  void resetGrid();
+
+  //ensures: ensures: update the hands of the player
+  //modifies: this->hands
+  void updateHand(std::vector<Card>, int, std::vector<bool>);
+ 
+  //ensures: based on the newly played card, update the image grid by chaging the nothing image to the played card image
+  //modifies: this->Grid
+  void updateImageGrid(std::vector<Card>);
+  
+  // ensures: print the player scores and winner
+  void printMessage(std::string);
+
 };
 
 #endif
