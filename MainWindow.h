@@ -47,7 +47,7 @@ protected:
 
   //ensures: handle the quite button
   void onButtonQuit();
-  
+
   //ensure: handle the Rage button
   void onButtonRage();
 
@@ -80,11 +80,11 @@ protected:
   //ensures: ensures: update the hands of the player
   //modifies: this->hands
   void updateHand(std::vector<Card>, int, std::vector<bool>);
- 
+
   //ensures: based on the newly played card, update the image grid by chaging the nothing image to the played card image
   //modifies: this->Grid
   void updateImageGrid(std::vector<Card>);
-  
+
   // ensures: print the player scores and winner
   void printMessage(std::string);
 
